@@ -180,7 +180,7 @@ html,body{overflow:visible;height:auto;background:#fff!important;}
 
 <!-- HOME -->
 
-<div class="screen active" id="screen-home">
+<div class="screen" id="screen-home">
   <div class="home-hero">
     <div class="hero-glow"></div>
     <div class="hero-grid"></div>
@@ -347,11 +347,14 @@ var _pendingQrId  = null;
   try {
     var params = new URLSearchParams(window.location.search);
     var id = params.get("id");
-    if (!id || !id.trim()) return; // acesso normal → home
-    _pendingQrId = id.trim();
+    // Sem ?id= → mostra home normalmente
+    if (!id || !id.trim()) {
+      document.getElementById("screen-home").classList.add("active");
+      return;
+    }
 
-    // Mostra tela de senha imediatamente (antes de qualquer outra tela)
-    document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
+    // Com ?id= → mostra SOMENTE a tela de senha, nada mais
+    _pendingQrId = id.trim();
     document.getElementById("screen-senha").classList.add("active");
     window.scrollTo(0,0);
 
