@@ -6,11 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <title>Condor — Sistema de Estoque</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:#eeeef0;overflow-x:hidden;}
+html,body{height:100%;font-family:'DM Sans',Arial,sans-serif;background:#0c0c0f;color:#eeeef0;overflow-x:hidden;}
 :root{
   --orange:#E8620A;--orange-dim:rgba(232,98,10,0.15);--orange-border:rgba(232,98,10,0.35);
   --bg:#0c0c0f;--s1:#131317;--s2:#1a1a20;--border:#2a2a34;--border2:#36363f;
@@ -347,14 +348,14 @@ var _pendingQrId  = null;
   try {
     var params = new URLSearchParams(window.location.search);
     var id = params.get("id");
-    // Sem ?id= → mostra home normalmente
+    // Sem ?id= → mantém home normalmente
     if (!id || !id.trim()) {
-      document.getElementById("screen-home").classList.add("active");
       return;
     }
 
-    // Com ?id= → mostra SOMENTE a tela de senha, nada mais
+    // Com ?id= → troca imediatamente para tela de senha
     _pendingQrId = id.trim();
+    document.getElementById("screen-home").classList.remove("active");
     document.getElementById("screen-senha").classList.add("active");
     window.scrollTo(0,0);
 
