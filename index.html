@@ -56,10 +56,9 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 .app-input{flex:1;background:var(--s2);border:1.5px solid var(--border2);border-radius:11px;padding:13px 14px;font-size:15px;color:var(--t1);outline:none;transition:border-color 0.2s;font-family:var(--font-body);}
 .app-input:focus{border-color:var(--orange);background:rgba(232,98,10,0.04);}
 .app-input::placeholder{color:var(--t3);}
-.app-input.shake{animation:shake 0.4s ease;}
-@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(8px);}60%{transform:translateX(-6px);}80%{transform:translateX(6px);}}
 .btn-primary{padding:13px 18px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--font-body);transition:background 0.15s,transform 0.1s;box-shadow:0 4px 16px rgba(232,98,10,0.35);}
 .btn-primary:active{transform:scale(0.96);background:#c4510a;}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
 .result-wrap{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);}
 .result-header{background:linear-gradient(135deg,var(--orange) 0%,#c4510a 100%);padding:22px 20px;position:relative;overflow:hidden;}
 .result-header::before{content:'';position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,0.08);}
@@ -86,6 +85,37 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 .loading-box{display:flex;flex-direction:column;align-items:center;gap:12px;padding:36px;color:var(--t2);font-size:13px;}
 .spinner{width:22px;height:22px;border:2.5px solid var(--border2);border-top-color:var(--orange);border-radius:50%;animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── TELA DE SENHA ── */
+#screen-senha{background:var(--bg);align-items:center;justify-content:center;}
+.senha-wrap{width:100%;max-width:380px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;}
+.senha-lock{width:76px;height:76px;border-radius:22px;background:var(--s2);border:1.5px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:22px;box-shadow:0 0 32px rgba(232,98,10,0.2);}
+.senha-titulo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--t1);margin-bottom:6px;text-align:center;}
+.senha-sub{font-size:13px;color:var(--t2);text-align:center;line-height:1.7;margin-bottom:22px;}
+.senha-badge{background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;padding:7px 16px;font-size:12px;color:var(--orange);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px;}
+.senha-form{width:100%;display:flex;flex-direction:column;gap:14px;}
+.senha-field{position:relative;width:100%;}
+.senha-input{width:100%;background:var(--s2);border:1.5px solid var(--border2);border-radius:11px;padding:14px 50px 14px 18px;font-size:16px;color:var(--t1);outline:none;font-family:var(--font-body);letter-spacing:4px;transition:border-color 0.2s,box-shadow 0.2s;}
+.senha-input::placeholder{letter-spacing:normal;color:var(--t3);}
+.senha-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,98,10,0.12);}
+.senha-input.input-erro{border-color:#f87171;box-shadow:0 0 0 3px rgba(239,68,68,0.12);animation:shake 0.38s cubic-bezier(.36,.07,.19,.97);}
+@keyframes shake{10%,90%{transform:translateX(-3px);}20%,80%{transform:translateX(5px);}30%,50%,70%{transform:translateX(-5px);}40%,60%{transform:translateX(5px);}}
+.toggle-vis{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:4px;line-height:1;transition:color 0.15s;}
+.toggle-vis:hover{color:var(--t2);}
+.senha-aviso{font-size:12px;color:#f87171;text-align:center;min-height:16px;}
+.btn-confirmar{width:100%;padding:15px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-display);transition:background 0.15s,transform 0.1s,opacity 0.15s;box-shadow:0 4px 20px rgba(232,98,10,0.4);}
+.btn-confirmar:active{transform:scale(0.97);background:#c4510a;}
+.btn-confirmar:disabled{opacity:0.55;cursor:not-allowed;transform:none;}
+.btn-texto{background:none;border:none;color:var(--t3);font-size:13px;cursor:pointer;font-family:var(--font-body);text-decoration:underline;text-underline-offset:3px;margin-top:6px;padding:4px;transition:color 0.15s;}
+.btn-texto:hover{color:var(--t2);}
+.bloqueio-panel{width:100%;background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.25);border-radius:14px;padding:28px 20px;text-align:center;display:none;flex-direction:column;align-items:center;gap:10px;}
+.bloqueio-panel.visivel{display:flex;}
+.bloqueio-icon{font-size:34px;}
+.bloqueio-titulo{font-size:15px;font-weight:700;color:#f87171;font-family:var(--font-display);}
+.bloqueio-sub{font-size:13px;color:var(--t2);line-height:1.6;}
+.bloqueio-timer{font-size:28px;font-weight:800;color:#f87171;font-family:var(--font-display);margin:6px 0;}
+
+/* ── ETIQUETA ── */
 .btn-imprimir{width:100%;padding:14px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:none;font-family:var(--font-body);transition:background 0.15s,transform 0.1s;box-shadow:0 4px 16px rgba(232,98,10,0.35);text-decoration:none;text-align:center;}
 .btn-imprimir:active{transform:scale(0.97);}
 .etiqueta-wrapper{display:none;}
@@ -107,37 +137,11 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 #etiqueta-qrcode{display:flex;justify-content:center;}
 #etiqueta-qrcode canvas,#etiqueta-qrcode img{border:3px solid #111;border-radius:6px;padding:3px;}
 .qr-label-grande{font-size:8pt;color:#aaa;letter-spacing:2px;text-transform:uppercase;text-align:center;}
-
-/* ══════════════════════════════
-   TELA DE SENHA (nova)
-══════════════════════════════ */
-#screen-senha{background:var(--bg);justify-content:center;align-items:center;}
-.senha-container{width:100%;max-width:380px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;gap:0;}
-.senha-lock{width:72px;height:72px;border-radius:20px;background:var(--s2);border:1.5px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:20px;box-shadow:0 0 28px rgba(232,98,10,0.18);}
-.senha-titulo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--t1);margin-bottom:6px;text-align:center;}
-.senha-sub{font-size:13px;color:var(--t2);text-align:center;margin-bottom:28px;line-height:1.6;}
-.senha-id-badge{background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--orange);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
-.senha-form{width:100%;display:flex;flex-direction:column;gap:12px;}
-.senha-input-wrap{position:relative;width:100%;}
-.senha-input{width:100%;background:var(--s2);border:1.5px solid var(--border2);border-radius:11px;padding:14px 50px 14px 16px;font-size:16px;color:var(--t1);outline:none;transition:border-color 0.2s,box-shadow 0.2s;font-family:var(--font-body);letter-spacing:3px;}
-.senha-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,98,10,0.12);}
-.senha-input::placeholder{letter-spacing:normal;color:var(--t3);}
-.senha-input.erro{border-color:#f87171;box-shadow:0 0 0 3px rgba(239,68,68,0.12);animation:shake 0.4s ease;}
-.toggle-senha{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:4px;line-height:1;}
-.btn-confirmar{width:100%;padding:15px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-display);transition:background 0.15s,transform 0.1s;box-shadow:0 4px 20px rgba(232,98,10,0.4);letter-spacing:0.3px;}
-.btn-confirmar:active{transform:scale(0.97);background:#c4510a;}
-.tentativas-aviso{font-size:12px;color:#f87171;text-align:center;min-height:18px;transition:opacity 0.2s;}
-.tentativas-aviso:empty{opacity:0;}
-.btn-voltar-senha{background:none;border:none;color:var(--t3);font-size:13px;cursor:pointer;margin-top:8px;font-family:var(--font-body);text-decoration:underline;text-underline-offset:3px;}
-.bloqueado-box{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:20px;text-align:center;width:100%;display:none;}
-.bloqueado-box .bl-icon{font-size:32px;margin-bottom:10px;}
-.bloqueado-box p{color:#f87171;font-size:14px;font-weight:600;margin-bottom:6px;}
-.bloqueado-box span{color:var(--t2);font-size:12px;}
-
 @media print{
   html,body{overflow:visible;height:auto;background:#fff!important;}
   .screen{display:block!important;}
-  #screen-home,#screen-consulta,#screen-senha,#screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
+  #screen-home,#screen-consulta,#screen-senha,
+  #screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
   .etiqueta-wrapper{display:block!important;}
 }
 </style>
@@ -177,30 +181,28 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
   <div class="home-footer">Condor Tecnologias Não-Letais · v3.3</div>
 </div>
 
-<!-- TELA DE SENHA (nova) -->
+<!-- SENHA -->
 <div class="screen" id="screen-senha">
-  <div class="senha-container">
+  <div class="senha-wrap">
     <div class="senha-lock">🔒</div>
     <div class="senha-titulo">Acesso Restrito</div>
-    <div class="senha-sub">Esta consulta requer autenticação.<br>Insira a senha para visualizar o item.</div>
-    <div class="senha-id-badge" id="senha-id-badge">ID: —</div>
-
-    <div class="senha-form" id="senhaFormArea">
-      <div class="senha-input-wrap">
-        <input class="senha-input" type="password" id="senhaInput" placeholder="Digite a senha..." autocomplete="off" maxlength="20"/>
-        <button class="toggle-senha" id="toggleSenha" type="button" title="Mostrar/ocultar senha">👁</button>
+    <div class="senha-sub">Esta consulta requer autenticação.<br>Insira a senha para visualizar as informações do palete.</div>
+    <div class="senha-badge" id="senha-badge-id">ID: —</div>
+    <div class="senha-form" id="senha-form">
+      <div class="senha-field">
+        <input class="senha-input" type="password" id="senha-input" placeholder="••••••••" autocomplete="off" maxlength="30" spellcheck="false"/>
+        <button class="toggle-vis" id="senha-toggle" type="button">👁</button>
       </div>
-      <div class="tentativas-aviso" id="tentativasAviso"></div>
-      <button class="btn-confirmar" id="btnConfirmarSenha">Confirmar acesso →</button>
-      <button class="btn-voltar-senha" id="btnVoltarSenha">Voltar ao início</button>
+      <div class="senha-aviso" id="senha-aviso" aria-live="polite"></div>
+      <button class="btn-confirmar" id="senha-btn-confirmar">Confirmar acesso</button>
+      <button class="btn-texto" id="senha-btn-voltar">Voltar ao início</button>
     </div>
-
-    <div class="bloqueado-box" id="bloqueadoBox">
-      <div class="bl-icon">🚫</div>
-      <p>Acesso temporariamente bloqueado</p>
-      <span>Muitas tentativas incorretas. Aguarde <strong id="countdownTxt">60</strong> segundos.</span>
-      <br><br>
-      <button class="btn-voltar-senha" id="btnVoltarBloqueado">Voltar ao início</button>
+    <div class="bloqueio-panel" id="bloqueio-panel">
+      <div class="bloqueio-icon">🚫</div>
+      <div class="bloqueio-titulo">Acesso bloqueado</div>
+      <div class="bloqueio-timer" id="bloqueio-timer">60</div>
+      <div class="bloqueio-sub">Muitas tentativas incorretas.<br>Aguarde para tentar novamente.</div>
+      <button class="btn-texto" id="bloqueio-btn-voltar" style="margin-top:8px;">Voltar ao início</button>
     </div>
   </div>
 </div>
@@ -227,7 +229,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
           <div style="font-size:14px;color:var(--t2);line-height:1.8;">
             Abra a <strong style="color:var(--t1)">câmera nativa</strong> do seu celular<br>
             e aponte para o QR Code da etiqueta.<br>
-            O sistema pedirá a senha <strong style="color:var(--orange)">antes de exibir</strong> o item.
+            O sistema pedirá a <strong style="color:var(--orange)">senha</strong> antes de exibir.
           </div>
         </div>
       </div>
@@ -239,12 +241,12 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
       </div>
       <div class="card-body">
         <div class="input-row">
-          <input class="app-input" type="text" id="idInputConsulta" placeholder="Digite o ID do item..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
-          <button class="btn-primary" id="btn-buscar">Buscar</button>
+          <input class="app-input" type="text" id="consulta-input" placeholder="Digite o ID do item..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
+          <button class="btn-primary" id="consulta-btn-buscar">Buscar</button>
         </div>
       </div>
     </div>
-    <div id="resultadoConsulta">
+    <div id="consulta-resultado">
       <div class="state-box"><span class="ico">📋</span>Escaneie um QR Code ou insira um ID.</div>
     </div>
   </div>
@@ -268,17 +270,17 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
       </div>
       <div class="card-body">
         <div class="input-row">
-          <input class="app-input" type="text" id="idInputEtiqueta" placeholder="Digite o ID do item..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
-          <button class="btn-primary" id="btn-gerar">Gerar</button>
+          <input class="app-input" type="text" id="etiqueta-input" placeholder="Digite o ID do item..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
+          <button class="btn-primary" id="etiqueta-btn-gerar">Gerar</button>
         </div>
-        <div id="painelMsg" class="state-box" style="padding:12px 0 0;">
+        <div id="etiqueta-msg" class="state-box" style="padding:12px 0 0;">
           <span class="ico" style="font-size:24px;">🏷️</span>Insira o ID e clique em Gerar.
         </div>
-        <a class="btn-imprimir" id="btnImprimir" href="#" target="_blank" rel="noopener">🖨️ Imprimir / Salvar PDF</a>
+        <a class="btn-imprimir" id="etiqueta-btn-imprimir" href="#" target="_blank" rel="noopener">🖨️ Imprimir / Salvar PDF</a>
       </div>
     </div>
   </div>
-  <div class="etiqueta-wrapper" id="etiquetaWrapper">
+  <div class="etiqueta-wrapper" id="etiqueta-wrapper">
     <div class="etiqueta">
       <div class="etiqueta-header">
         <img src="https://abimde.org.br/media/cache/1d/57/1d57bff80e17c5fe929da516471546ac.png" alt="Condor"/>
@@ -314,318 +316,369 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 </div>
 
 <script>
-// ═══════════════════════════════════════════════
-// CONFIGURAÇÕES
-// ═══════════════════════════════════════════════
-var SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRyUZ_F6JuvQcVaIAPQCtQH-4CTi6zn-MIXVktxX6fxdh_eUr5aAZOftF--294824T6MrBIs-1ZCxdv/pub?gid=0&single=true&output=csv";
-var SITE_URL  = "https://wallaceogomes11-ops.github.io/Condor/";
+(function () {
+  "use strict";
 
-// ★ DEFINA A SENHA AQUI ★
-var SENHA_CORRETA = "condor2024";
+  // ═══════════════════════════════════════════════════════════
+  // CONFIG
+  // ═══════════════════════════════════════════════════════════
+  var CONFIG = {
+    SHEET_URL      : "https://docs.google.com/spreadsheets/d/e/2PACX-1vRyUZ_F6JuvQcVaIAPQCtQH-4CTi6zn-MIXVktxX6fxdh_eUr5aAZOftF--294824T6MrBIs-1ZCxdv/pub?gid=0&single=true&output=csv",
+    SITE_URL       : "https://wallaceogomes11-ops.github.io/Condor/",
+    SENHA          : "condor2024",  // ← altere a senha aqui
+    MAX_TENTATIVAS : 5,
+    TEMPO_BLOQUEIO : 60             // segundos
+  };
 
-// Configurações de bloqueio
-var MAX_TENTATIVAS = 5;       // tentativas antes de bloquear
-var TEMPO_BLOQUEIO = 60;      // segundos de bloqueio
+  var CAMPOS = [
+    { col:"MICROSIGA",  label:"Micro Siga", icon:"🏷️" },
+    { col:"Descrição",  label:"Descrição",  icon:"📝" },
+    { col:"Quantidade", label:"Quantidade", icon:"🔢" },
+    { col:"VOLUME",     label:"Volume",     icon:"📦" },
+    { col:"Validade",   label:"Validade",   icon:"📅" },
+    { col:"Status",     label:"Status",     icon:"✅" }
+  ];
 
-var CAMPOS = [
-  {col:"MICROSIGA",  label:"Micro Siga", icon:"🏷️"},
-  {col:"Descrição",  label:"Descrição",  icon:"📝"},
-  {col:"Quantidade", label:"Quantidade", icon:"🔢"},
-  {col:"VOLUME",     label:"Volume",     icon:"📦"},
-  {col:"Validade",   label:"Validade",   icon:"📅"},
-  {col:"Status",     label:"Status",     icon:"✅"}
-];
+  // ═══════════════════════════════════════════════════════════
+  // ESTADO DA SESSÃO
+  // ═══════════════════════════════════════════════════════════
+  var tentativas   = 0;
+  var bloqueadoAte = 0;
+  var idPendente   = null;
+  var timerHandle  = null;
 
-// ═══════════════════════════════════════════════
-// ESTADO DA SENHA
-// ═══════════════════════════════════════════════
-var tentativas = 0;
-var bloqueadoAte = 0;
-var idPendente = "";
-var countdownInterval = null;
-
-// ═══════════════════════════════════════════════
-// NAVEGAÇÃO
-// ═══════════════════════════════════════════════
-function irPara(id) {
-  document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
-  document.getElementById(id).classList.add("active");
-  window.scrollTo(0, 0);
-}
-
-document.getElementById("btn-ir-consulta").addEventListener("click", function(){ irPara("screen-consulta"); });
-document.getElementById("btn-ir-etiqueta").addEventListener("click", function(){ irPara("screen-etiqueta"); });
-document.getElementById("back-consulta").addEventListener("click",   function(){ irPara("screen-home"); });
-document.getElementById("back-etiqueta").addEventListener("click",   function(){ irPara("screen-home"); });
-document.getElementById("btnVoltarSenha").addEventListener("click",  function(){ irPara("screen-home"); });
-document.getElementById("btnVoltarBloqueado").addEventListener("click", function(){ irPara("screen-home"); });
-
-// ═══════════════════════════════════════════════
-// TELA DE SENHA
-// ═══════════════════════════════════════════════
-function abrirTelaSenha(id) {
-  idPendente = id;
-  document.getElementById("senha-id-badge").textContent = "ID: " + id.toUpperCase();
-  document.getElementById("senhaInput").value = "";
-  document.getElementById("tentativasAviso").textContent = "";
-
-  var agora = Date.now();
-  if (bloqueadoAte > agora) {
-    mostrarBloqueio();
-  } else {
-    document.getElementById("senhaFormArea").style.display = "flex";
-    document.getElementById("bloqueadoBox").style.display = "none";
+  // ═══════════════════════════════════════════════════════════
+  // NAVEGAÇÃO
+  // ═══════════════════════════════════════════════════════════
+  function irPara(id) {
+    document.querySelectorAll(".screen").forEach(function (s) {
+      s.classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+    window.scrollTo(0, 0);
   }
 
-  irPara("screen-senha");
-  setTimeout(function(){ document.getElementById("senhaInput").focus(); }, 300);
-}
+  // ═══════════════════════════════════════════════════════════
+  // UTILITÁRIOS
+  // ═══════════════════════════════════════════════════════════
+  function parseCSV(text) {
+    var lines   = text.trim().split("\n");
+    var headers = lines[0].split(",").map(function (h) { return h.replace(/"/g,"").trim(); });
+    var rows    = [];
+    for (var i = 1; i < lines.length; i++) {
+      var cols = [], cur = "", inQ = false;
+      for (var c = 0; c < lines[i].length; c++) {
+        var ch = lines[i][c];
+        if (ch === '"') { inQ = !inQ; }
+        else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ""; }
+        else { cur += ch; }
+      }
+      cols.push(cur.trim());
+      var row = {};
+      headers.forEach(function (h, idx) { row[h] = (cols[idx]||"").replace(/"/g,"").trim(); });
+      rows.push(row);
+    }
+    return { headers: headers, rows: rows };
+  }
 
-function mostrarBloqueio() {
-  document.getElementById("senhaFormArea").style.display = "none";
-  document.getElementById("bloqueadoBox").style.display = "block";
-  iniciarContagem();
-}
+  function findField(item, name) {
+    var key = Object.keys(item).find(function (k) {
+      return k.toLowerCase().trim() === name.toLowerCase().trim();
+    });
+    return key ? item[key] : "—";
+  }
 
-function iniciarContagem() {
-  if (countdownInterval) clearInterval(countdownInterval);
-  countdownInterval = setInterval(function() {
-    var restante = Math.ceil((bloqueadoAte - Date.now()) / 1000);
-    if (restante <= 0) {
-      clearInterval(countdownInterval);
+  function statusBadge(val) {
+    var v   = (val||"").trim().toLowerCase();
+    var cls = v.includes("aguardando") ? "green" : v === "cancelado" ? "red" : "yellow";
+    return '<span class="sbadge '+cls+'"><span class="sbadge-dot"></span>'+(val||"—")+'</span>';
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  // MÓDULO SENHA
+  // ═══════════════════════════════════════════════════════════
+  var elSenhaInput   = document.getElementById("senha-input");
+  var elSenhaAviso   = document.getElementById("senha-aviso");
+  var elSenhaForm    = document.getElementById("senha-form");
+  var elBloqueio     = document.getElementById("bloqueio-panel");
+  var elBloqueioTimer= document.getElementById("bloqueio-timer");
+  var elSenhaBadge   = document.getElementById("senha-badge-id");
+
+  function senhaReset() {
+    elSenhaInput.value = "";
+    elSenhaInput.classList.remove("input-erro");
+    elSenhaAviso.textContent = "";
+  }
+
+  function senhaAbrirForm() {
+    elSenhaForm.style.display = "flex";
+    elBloqueio.classList.remove("visivel");
+    senhaReset();
+    setTimeout(function () { elSenhaInput.focus(); }, 350);
+  }
+
+  function senhaAbrirBloqueio() {
+    elSenhaForm.style.display = "none";
+    elBloqueio.classList.add("visivel");
+    if (timerHandle) clearInterval(timerHandle);
+    timerHandle = setInterval(function () {
+      var rest = Math.ceil((bloqueadoAte - Date.now()) / 1000);
+      elBloqueioTimer.textContent = rest > 0 ? rest : 0;
+      if (rest <= 0) {
+        clearInterval(timerHandle);
+        timerHandle  = null;
+        tentativas   = 0;
+        senhaAbrirForm();
+      }
+    }, 500);
+  }
+
+  function abrirTelaSenha(id) {
+    idPendente = id;
+    elSenhaBadge.textContent = "ID: " + id.toUpperCase();
+    if (Date.now() < bloqueadoAte) {
+      senhaAbrirBloqueio();
+    } else {
+      senhaAbrirForm();
+    }
+    irPara("screen-senha");
+  }
+
+  function confirmarSenha() {
+    if (Date.now() < bloqueadoAte) { senhaAbrirBloqueio(); return; }
+
+    var digitada = elSenhaInput.value;
+
+    if (digitada === CONFIG.SENHA) {
+      // ✅ CORRETO — guarda o ID, limpa estado, navega e busca
       tentativas = 0;
-      document.getElementById("senhaFormArea").style.display = "flex";
-      document.getElementById("bloqueadoBox").style.display = "none";
-      document.getElementById("tentativasAviso").textContent = "";
-      document.getElementById("senhaInput").value = "";
-      setTimeout(function(){ document.getElementById("senhaInput").focus(); }, 100);
+      var id = idPendente;
+      idPendente = null;
+      senhaReset();
+      irPara("screen-consulta");
+      // A consulta recebe o ID diretamente — não lê o campo de input
+      executarConsulta(id);
     } else {
-      document.getElementById("countdownTxt").textContent = restante;
-    }
-  }, 500);
-}
+      // ❌ ERRADO
+      tentativas++;
+      elSenhaInput.value = "";
+      elSenhaInput.classList.remove("input-erro");
+      void elSenhaInput.offsetWidth; // força reflow para reiniciar animação CSS
+      elSenhaInput.classList.add("input-erro");
 
-function confirmarSenha() {
-  var agora = Date.now();
-  if (bloqueadoAte > agora) { mostrarBloqueio(); return; }
-
-  var digitada = document.getElementById("senhaInput").value;
-  if (digitada === SENHA_CORRETA) {
-    tentativas = 0;
-    irPara("screen-consulta");
-    document.getElementById("idInputConsulta").value = idPendente;
-    buscar();
-  } else {
-    tentativas++;
-    var restantes = MAX_TENTATIVAS - tentativas;
-    var input = document.getElementById("senhaInput");
-    input.classList.remove("erro");
-    void input.offsetWidth; // força reflow para reiniciar animação
-    input.classList.add("erro");
-    input.value = "";
-
-    if (tentativas >= MAX_TENTATIVAS) {
-      bloqueadoAte = Date.now() + TEMPO_BLOQUEIO * 1000;
-      mostrarBloqueio();
-    } else {
-      var aviso = document.getElementById("tentativasAviso");
-      aviso.textContent = "Senha incorreta. " + restantes + " tentativa" + (restantes === 1 ? "" : "s") + " restante" + (restantes === 1 ? "." : "s.");
+      if (tentativas >= CONFIG.MAX_TENTATIVAS) {
+        bloqueadoAte = Date.now() + CONFIG.TEMPO_BLOQUEIO * 1000;
+        senhaAbrirBloqueio();
+      } else {
+        var rest = CONFIG.MAX_TENTATIVAS - tentativas;
+        elSenhaAviso.textContent = "Senha incorreta. " + rest +
+          " tentativa" + (rest === 1 ? "" : "s") +
+          " restante" + (rest === 1 ? "." : "s.");
+        elSenhaInput.focus();
+      }
     }
   }
-}
 
-document.getElementById("btnConfirmarSenha").addEventListener("click", confirmarSenha);
-document.getElementById("senhaInput").addEventListener("keydown", function(e){ if (e.key === "Enter") confirmarSenha(); });
+  document.getElementById("senha-btn-confirmar").addEventListener("click", confirmarSenha);
+  elSenhaInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); confirmarSenha(); }
+  });
+  elSenhaInput.addEventListener("input", function () {
+    elSenhaInput.classList.remove("input-erro");
+    elSenhaAviso.textContent = "";
+  });
+  document.getElementById("senha-toggle").addEventListener("click", function () {
+    var vis = elSenhaInput.type === "text";
+    elSenhaInput.type = vis ? "password" : "text";
+    this.textContent  = vis ? "👁" : "🙈";
+    elSenhaInput.focus();
+  });
+  document.getElementById("senha-btn-voltar").addEventListener("click", function () { irPara("screen-home"); });
+  document.getElementById("bloqueio-btn-voltar").addEventListener("click", function () { irPara("screen-home"); });
 
-// Toggle mostrar/ocultar senha
-document.getElementById("toggleSenha").addEventListener("click", function(){
-  var inp = document.getElementById("senhaInput");
-  inp.type = inp.type === "password" ? "text" : "password";
-  this.textContent = inp.type === "password" ? "👁" : "🙈";
-});
+  // ═══════════════════════════════════════════════════════════
+  // MÓDULO CONSULTA
+  // Separação clara: executarConsulta(id) é interno (pós-senha)
+  //                  buscarManual() é do botão (lê o campo)
+  // ═══════════════════════════════════════════════════════════
+  var elConsultaInput = document.getElementById("consulta-input");
+  var elConsultaRes   = document.getElementById("consulta-resultado");
 
-// Remove classe de erro ao começar a digitar novamente
-document.getElementById("senhaInput").addEventListener("input", function(){
-  this.classList.remove("erro");
-  document.getElementById("tentativasAviso").textContent = "";
-});
-
-// ═══════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════
-function parseCSV(text) {
-  var lines = text.trim().split("\n");
-  var headers = lines[0].split(",").map(function(h){ return h.replace(/"/g,"").trim(); });
-  var rows = [];
-  for (var i = 1; i < lines.length; i++) {
-    var cols = [], cur = "", inQ = false;
-    for (var c = 0; c < lines[i].length; c++) {
-      var ch = lines[i][c];
-      if (ch === '"') { inQ = !inQ; }
-      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ""; }
-      else { cur += ch; }
-    }
-    cols.push(cur.trim());
-    var row = {};
-    headers.forEach(function(h, idx){ row[h] = (cols[idx] || "").replace(/"/g,"").trim(); });
-    rows.push(row);
+  function executarConsulta(id) {
+    // Atualiza o campo visual para o usuário saber o que está consultando
+    elConsultaInput.value = id;
+    _fetchConsulta(id);
   }
-  return { headers: headers, rows: rows };
-}
 
-function findField(item, name) {
-  var key = Object.keys(item).find(function(k){ return k.toLowerCase().trim() === name.toLowerCase().trim(); });
-  return key ? item[key] : "—";
-}
+  function buscarManual() {
+    var id = elConsultaInput.value.trim();
+    if (!id) {
+      elConsultaRes.innerHTML = '<div class="state-box"><span class="ico">⚠️</span>Insira um ID para consultar.</div>';
+      return;
+    }
+    _fetchConsulta(id);
+  }
 
-function statusBadge(val) {
-  var v = (val || "").trim().toLowerCase();
-  var cls = "yellow";
-  if (v.includes("aguardando")) cls = "green";
-  else if (v === "cancelado") cls = "red";
-  return '<span class="sbadge '+cls+'"><span class="sbadge-dot"></span>'+(val||"—")+'</span>';
-}
-
-// ═══════════════════════════════════════════════
-// CONSULTA
-// ═══════════════════════════════════════════════
-function buscar() {
-  var id  = document.getElementById("idInputConsulta").value.trim();
-  var res = document.getElementById("resultadoConsulta");
-  if (!id) { res.innerHTML = '<div class="state-box"><span class="ico">⚠️</span>Insira um ID para consultar.</div>'; return; }
-  res.innerHTML = '<div class="loading-box"><div class="spinner"></div>Buscando na planilha...</div>';
-  fetch(SHEET_URL)
-    .then(function(r){ return r.text(); })
-    .then(function(text){
-      var parsed = parseCSV(text);
-      var idCol  = parsed.headers.find(function(h){ return h.toLowerCase() === "id"; });
-      if (!idCol) { res.innerHTML = '<div class="error-box">Coluna "ID" não encontrada.</div>'; return; }
-      var item = parsed.rows.find(function(r){ return (r[idCol]||"").toLowerCase() === id.toLowerCase(); });
-      if (!item) { res.innerHTML = '<div class="error-box">❌ ID não encontrado: <strong>'+id+'</strong></div>'; return; }
-      var descricao = findField(item,"Descrição") || findField(item,"Descricao") || "";
-      var now = new Date().toLocaleString("pt-BR");
-      var fieldsHTML = CAMPOS.map(function(c){
-        var val = findField(item, c.col);
-        var dv  = c.col === "Status" ? statusBadge(val) : '<span class="frow-val">'+val+'</span>';
-        return '<div class="frow"><div class="frow-left"><div class="frow-icon">'+c.icon+'</div><span class="frow-label">'+c.label+'</span></div>'+dv+'</div>';
-      }).join("");
-      res.innerHTML =
-        '<div class="result-wrap">' +
-          '<div class="result-header">' +
-            '<div class="rh-label">ID do item</div>' +
-            '<div class="rh-id">'+id.toUpperCase()+'</div>' +
-            (descricao ? '<div class="rh-desc">'+descricao+'</div>' : '') +
-          '</div>' +
-          '<div class="result-body">'+fieldsHTML+'</div>' +
-          '<div class="result-foot">Consultado em '+now+'</div>' +
-        '</div>';
-    })
-    .catch(function(){ res.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
-}
-
-document.getElementById("btn-buscar").addEventListener("click", buscar);
-document.getElementById("idInputConsulta").addEventListener("keydown", function(e){ if (e.key === "Enter") buscar(); });
-
-// ═══════════════════════════════════════════════
-// GERAR ETIQUETA
-// ═══════════════════════════════════════════════
-function gerarEtiqueta() {
-  var id   = document.getElementById("idInputEtiqueta").value.trim();
-  var msg  = document.getElementById("painelMsg");
-  var wrap = document.getElementById("etiquetaWrapper");
-  var btnP = document.getElementById("btnImprimir");
-  if (!id) { msg.innerHTML = '<div class="error-box">Insira um ID.</div>'; return; }
-  msg.innerHTML = '<div class="loading-box"><div class="spinner"></div>Buscando na planilha...</div>';
-  wrap.style.display = "none";
-  btnP.style.display = "none";
-
-  fetch(SHEET_URL)
-    .then(function(r){ return r.text(); })
-    .then(function(text){
-      var parsed = parseCSV(text);
-      var idCol  = parsed.headers.find(function(h){ return h.toLowerCase() === "id"; });
-      if (!idCol) { msg.innerHTML = '<div class="error-box">Coluna ID não encontrada.</div>'; return; }
-      var item = parsed.rows.find(function(r){ return (r[idCol]||"").toLowerCase() === id.toLowerCase(); });
-      if (!item) { msg.innerHTML = '<div class="error-box">❌ ID não encontrado: '+id+'</div>'; return; }
-
-      document.getElementById("el-microsiga").textContent  = findField(item,"MICROSIGA") || "—";
-      document.getElementById("el-descricao").textContent  = findField(item,"Descrição") || findField(item,"Descricao") || "—";
-      document.getElementById("el-quantidade").textContent = findField(item,"Quantidade") || "—";
-      document.getElementById("el-validade").textContent   = findField(item,"Validade") || "—";
-      document.getElementById("el-id").textContent         = id.toUpperCase();
-      document.getElementById("el-data").textContent       = new Date().toLocaleDateString("pt-BR");
-
-      var qrDiv = document.getElementById("etiqueta-qrcode");
-      qrDiv.innerHTML = "";
-      var urlCompleta = SITE_URL + "?id=" + encodeURIComponent(id);
-      new QRCode(qrDiv, {
-        text: urlCompleta,
-        width: 200, height: 200,
-        colorDark: "#000000", colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+  function _fetchConsulta(id) {
+    elConsultaRes.innerHTML = '<div class="loading-box"><div class="spinner"></div>Buscando na planilha...</div>';
+    fetch(CONFIG.SHEET_URL)
+      .then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.text();
+      })
+      .then(function (text) {
+        var parsed = parseCSV(text);
+        var idCol  = parsed.headers.find(function (h) { return h.toLowerCase() === "id"; });
+        if (!idCol) {
+          elConsultaRes.innerHTML = '<div class="error-box">Coluna "ID" não encontrada na planilha.</div>';
+          return;
+        }
+        var item = parsed.rows.find(function (row) {
+          return (row[idCol]||"").toLowerCase() === id.toLowerCase();
+        });
+        if (!item) {
+          elConsultaRes.innerHTML = '<div class="error-box">❌ ID não encontrado: <strong>'+id+'</strong></div>';
+          return;
+        }
+        var desc  = findField(item,"Descrição") || findField(item,"Descricao") || "";
+        var agora = new Date().toLocaleString("pt-BR");
+        var rows  = CAMPOS.map(function (c) {
+          var val = findField(item, c.col);
+          var vEl = c.col === "Status" ? statusBadge(val) : '<span class="frow-val">'+val+'</span>';
+          return '<div class="frow"><div class="frow-left"><div class="frow-icon">'+c.icon+'</div>'+
+            '<span class="frow-label">'+c.label+'</span></div>'+vEl+'</div>';
+        }).join("");
+        elConsultaRes.innerHTML =
+          '<div class="result-wrap">'+
+            '<div class="result-header">'+
+              '<div class="rh-label">ID do item</div>'+
+              '<div class="rh-id">'+id.toUpperCase()+'</div>'+
+              (desc ? '<div class="rh-desc">'+desc+'</div>' : '')+
+            '</div>'+
+            '<div class="result-body">'+rows+'</div>'+
+            '<div class="result-foot">Consultado em '+agora+'</div>'+
+          '</div>';
+      })
+      .catch(function (err) {
+        console.error("[Condor Consulta]", err);
+        elConsultaRes.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>';
       });
+  }
 
-      wrap.style.display = "block";
-      msg.innerHTML = '<div class="ok-box">✅ Pronto! Clique em <strong>Imprimir</strong> para salvar ou imprimir.</div>';
+  document.getElementById("consulta-btn-buscar").addEventListener("click", buscarManual);
+  elConsultaInput.addEventListener("keydown", function (e) { if (e.key === "Enter") buscarManual(); });
 
-      setTimeout(function(){
-        var estilos = [
-          "*{box-sizing:border-box;margin:0;padding:0;}",
-          "body{font-family:'DM Sans',Arial,sans-serif;background:#fff;color:#1a1a1a;}",
-          ".etiqueta{width:210mm;min-height:297mm;padding:12mm;display:flex;flex-direction:column;}",
-          ".etiqueta-header{display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #E8620A;padding-bottom:7mm;margin-bottom:8mm;}",
-          ".etiqueta-header img{height:18mm;object-fit:contain;}",
-          ".etiqueta-titulo h1{font-size:18pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:'Syne',Arial,sans-serif;}",
-          ".etiqueta-titulo p{font-size:8pt;color:#999;letter-spacing:2px;text-transform:uppercase;text-align:right;margin-top:2mm;}",
-          ".campos{display:flex;flex-direction:column;gap:4mm;}",
-          ".campo-bloco{border:1.5px solid #e8e8e8;border-radius:6px;padding:4mm 5mm;background:#fafafa;}",
-          ".campo-label{font-size:7pt;font-weight:700;color:#E8620A;letter-spacing:2px;text-transform:uppercase;margin-bottom:2mm;}",
-          ".campo-valor{font-size:18pt;font-weight:800;color:#111;line-height:1.1;}",
-          ".campo-valor.grande{font-size:28pt;}",
-          ".linha-dupla{display:grid;grid-template-columns:1fr 1fr;gap:4mm;}",
-          ".etiqueta-qr-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10mm;border-top:3px solid #E8620A;padding-top:8mm;gap:6mm;}",
-          ".qr-info{display:flex;gap:16mm;width:100%;justify-content:center;margin-bottom:4mm;}",
-          ".qr-info-item p{font-size:7pt;color:#999;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2mm;}",
-          ".qr-info-item strong{font-size:12pt;color:#111;font-weight:700;}",
-          "#etiqueta-qrcode{display:flex;justify-content:center;}",
-          "#etiqueta-qrcode canvas,#etiqueta-qrcode img{border:3px solid #111;border-radius:6px;padding:3px;}",
-          ".qr-label-grande{font-size:8pt;color:#aaa;letter-spacing:2px;text-transform:uppercase;text-align:center;}",
-          "@media print{body{margin:0;}}"
-        ].join("");
+  // ═══════════════════════════════════════════════════════════
+  // MÓDULO ETIQUETA
+  // ═══════════════════════════════════════════════════════════
+  var elEtiquetaInput  = document.getElementById("etiqueta-input");
+  var elEtiquetaMsg    = document.getElementById("etiqueta-msg");
+  var elEtiquetaWrap   = document.getElementById("etiqueta-wrapper");
+  var elEtiquetaBtnImp = document.getElementById("etiqueta-btn-imprimir");
+  var elEtiquetaBtnGer = document.getElementById("etiqueta-btn-gerar");
 
-        var html = '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/>' +
-          '<title>Palete '+id.toUpperCase()+' - Condor</title>' +
-          '<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">' +
-          '<style>'+estilos+'</style>' +
-          '</head><body>' +
-          document.getElementById("etiquetaWrapper").innerHTML +
-          '<script>window.onload=function(){window.print();}<\/script>' +
-          '</body></html>';
+  function gerarEtiqueta() {
+    var id = elEtiquetaInput.value.trim();
+    if (!id) { elEtiquetaMsg.innerHTML = '<div class="error-box">Insira um ID.</div>'; return; }
+    elEtiquetaMsg.innerHTML  = '<div class="loading-box"><div class="spinner"></div>Buscando na planilha...</div>';
+    elEtiquetaWrap.style.display   = "none";
+    elEtiquetaBtnImp.style.display = "none";
+    elEtiquetaBtnGer.disabled      = true;
 
-        var blob = new Blob([html], {type: "text/html;charset=utf-8"});
-        var url  = URL.createObjectURL(blob);
-        btnP.href = url;
-        btnP.style.display = "block";
-      }, 300);
-    })
-    .catch(function(){ msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
-}
+    fetch(CONFIG.SHEET_URL)
+      .then(function (r) { if (!r.ok) throw new Error("HTTP "+r.status); return r.text(); })
+      .then(function (text) {
+        var parsed = parseCSV(text);
+        var idCol  = parsed.headers.find(function (h) { return h.toLowerCase() === "id"; });
+        if (!idCol) { elEtiquetaMsg.innerHTML = '<div class="error-box">Coluna ID não encontrada.</div>'; return; }
+        var item = parsed.rows.find(function (row) { return (row[idCol]||"").toLowerCase() === id.toLowerCase(); });
+        if (!item) { elEtiquetaMsg.innerHTML = '<div class="error-box">❌ ID não encontrado: '+id+'</div>'; return; }
 
-document.getElementById("btn-gerar").addEventListener("click", gerarEtiqueta);
-document.getElementById("idInputEtiqueta").addEventListener("keydown", function(e){ if (e.key === "Enter") gerarEtiqueta(); });
+        document.getElementById("el-microsiga").textContent  = findField(item,"MICROSIGA") || "—";
+        document.getElementById("el-descricao").textContent  = findField(item,"Descrição") || findField(item,"Descricao") || "—";
+        document.getElementById("el-quantidade").textContent = findField(item,"Quantidade") || "—";
+        document.getElementById("el-validade").textContent   = findField(item,"Validade") || "—";
+        document.getElementById("el-id").textContent         = id.toUpperCase();
+        document.getElementById("el-data").textContent       = new Date().toLocaleDateString("pt-BR");
 
-// ═══════════════════════════════════════════════
-// AUTO-BUSCA por ?id= na URL  ← agora passa pela TELA DE SENHA
-// ═══════════════════════════════════════════════
-(function(){
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var id = params.get("id");
-    if (id && id.trim()) {
-      abrirTelaSenha(id.trim());
-    }
-  } catch(e) {}
-})();
+        var qrDiv = document.getElementById("etiqueta-qrcode");
+        qrDiv.innerHTML = "";
+        new QRCode(qrDiv, {
+          text: CONFIG.SITE_URL + "?id=" + encodeURIComponent(id),
+          width: 200, height: 200,
+          colorDark: "#000000", colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+
+        elEtiquetaWrap.style.display = "block";
+        elEtiquetaMsg.innerHTML = '<div class="ok-box">✅ Pronto! Clique em <strong>Imprimir</strong> para salvar ou imprimir.</div>';
+
+        setTimeout(function () {
+          var css = [
+            "*{box-sizing:border-box;margin:0;padding:0;}",
+            "body{font-family:'DM Sans',Arial,sans-serif;background:#fff;color:#1a1a1a;}",
+            ".etiqueta{width:210mm;min-height:297mm;padding:12mm;display:flex;flex-direction:column;}",
+            ".etiqueta-header{display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #E8620A;padding-bottom:7mm;margin-bottom:8mm;}",
+            ".etiqueta-header img{height:18mm;object-fit:contain;}",
+            ".etiqueta-titulo h1{font-size:18pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:'Syne',Arial,sans-serif;}",
+            ".etiqueta-titulo p{font-size:8pt;color:#999;letter-spacing:2px;text-transform:uppercase;text-align:right;margin-top:2mm;}",
+            ".campos{display:flex;flex-direction:column;gap:4mm;}",
+            ".campo-bloco{border:1.5px solid #e8e8e8;border-radius:6px;padding:4mm 5mm;background:#fafafa;}",
+            ".campo-label{font-size:7pt;font-weight:700;color:#E8620A;letter-spacing:2px;text-transform:uppercase;margin-bottom:2mm;}",
+            ".campo-valor{font-size:18pt;font-weight:800;color:#111;line-height:1.1;}",
+            ".campo-valor.grande{font-size:28pt;}",
+            ".linha-dupla{display:grid;grid-template-columns:1fr 1fr;gap:4mm;}",
+            ".etiqueta-qr-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:10mm;border-top:3px solid #E8620A;padding-top:8mm;gap:6mm;}",
+            ".qr-info{display:flex;gap:16mm;width:100%;justify-content:center;margin-bottom:4mm;}",
+            ".qr-info-item p{font-size:7pt;color:#999;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2mm;}",
+            ".qr-info-item strong{font-size:12pt;color:#111;font-weight:700;}",
+            "#etiqueta-qrcode{display:flex;justify-content:center;}",
+            "#etiqueta-qrcode canvas,#etiqueta-qrcode img{border:3px solid #111;border-radius:6px;padding:3px;}",
+            ".qr-label-grande{font-size:8pt;color:#aaa;letter-spacing:2px;text-transform:uppercase;text-align:center;}",
+            "@media print{body{margin:0;}}"
+          ].join("");
+          var htmlStr =
+            '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/>'+
+            '<title>Palete '+id.toUpperCase()+' - Condor</title>'+
+            '<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">'+
+            '<style>'+css+'</style></head><body>'+
+            document.getElementById("etiqueta-wrapper").innerHTML+
+            '<script>window.onload=function(){window.print();}<\/script>'+
+            '</body></html>';
+          var blob = new Blob([htmlStr], { type:"text/html;charset=utf-8" });
+          elEtiquetaBtnImp.href          = URL.createObjectURL(blob);
+          elEtiquetaBtnImp.style.display = "block";
+        }, 400);
+      })
+      .catch(function (err) {
+        console.error("[Condor Etiqueta]", err);
+        elEtiquetaMsg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>';
+      })
+      .finally(function () { elEtiquetaBtnGer.disabled = false; });
+  }
+
+  document.getElementById("etiqueta-btn-gerar").addEventListener("click", gerarEtiqueta);
+  elEtiquetaInput.addEventListener("keydown", function (e) { if (e.key === "Enter") gerarEtiqueta(); });
+
+  // ═══════════════════════════════════════════════════════════
+  // NAVEGAÇÃO — botões de menu e back
+  // ═══════════════════════════════════════════════════════════
+  document.getElementById("btn-ir-consulta").addEventListener("click", function () { irPara("screen-consulta"); });
+  document.getElementById("btn-ir-etiqueta").addEventListener("click", function () { irPara("screen-etiqueta"); });
+  document.getElementById("back-consulta").addEventListener("click",   function () { irPara("screen-home"); });
+  document.getElementById("back-etiqueta").addEventListener("click",   function () { irPara("screen-home"); });
+
+  // ═══════════════════════════════════════════════════════════
+  // DEEP LINK — ?id= na URL → SEMPRE passa pela tela de senha
+  // Sem try/catch oculto. Falha visível no console se ocorrer.
+  // ═══════════════════════════════════════════════════════════
+  var _urlParams = new URLSearchParams(window.location.search);
+  var _urlId     = _urlParams.get("id");
+  if (_urlId && _urlId.trim()) {
+    abrirTelaSenha(_urlId.trim());
+  }
+
+}());
 </script>
 </body>
 </html>
