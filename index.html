@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
@@ -112,17 +113,73 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 #etiqueta-qrcode{display:flex;justify-content:center;}
 #etiqueta-qrcode canvas,#etiqueta-qrcode img{border:3px solid #111;border-radius:6px;padding:3px;}
 .qr-label-grande{font-size:8pt;color:#aaa;letter-spacing:2px;text-transform:uppercase;text-align:center;}
+/* ── TELA DE SENHA ── */
+#screen-senha{background:var(--bg);align-items:center;justify-content:center;}
+.senha-container{width:100%;max-width:380px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;gap:0;}
+.senha-glow{position:fixed;top:0;left:50%;transform:translateX(-50%);width:400px;height:260px;background:radial-gradient(ellipse at center,rgba(232,98,10,0.14) 0%,transparent 70%);pointer-events:none;}
+.senha-grid{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:32px 32px;opacity:0.18;pointer-events:none;}
+.senha-logo{width:72px;height:72px;border-radius:20px;background:var(--s2);border:1.5px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 0 32px rgba(232,98,10,0.22);margin-bottom:22px;position:relative;}
+.senha-logo::before{content:'';position:absolute;inset:-5px;border-radius:25px;border:1px solid var(--orange-border);opacity:0.35;}
+.senha-title{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-0.4px;margin-bottom:6px;text-align:center;}
+.senha-sub{font-size:13px;color:var(--t2);text-align:center;line-height:1.6;margin-bottom:28px;}
+.senha-card{width:100%;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.senha-card-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.senha-card-head-icon{width:32px;height:32px;border-radius:9px;background:var(--s2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.senha-card-head-title{font-size:13px;font-weight:600;color:var(--t1);font-family:var(--font-display);}
+.senha-card-body{padding:18px;display:flex;flex-direction:column;gap:12px;}
+.senha-input-wrap{position:relative;display:flex;align-items:center;}
+.senha-input{width:100%;background:var(--s2);border:1.5px solid var(--border2);border-radius:11px;padding:14px 46px 14px 14px;font-size:15px;color:var(--t1);outline:none;transition:border-color 0.2s,background 0.2s;font-family:var(--font-body);letter-spacing:2px;}
+.senha-input:focus{border-color:var(--orange);background:rgba(232,98,10,0.04);}
+.senha-input::placeholder{color:var(--t3);letter-spacing:0;}
+.senha-toggle{position:absolute;right:14px;background:none;border:none;cursor:pointer;color:var(--t3);font-size:17px;padding:4px;transition:color 0.2s;line-height:1;}
+.senha-toggle:hover{color:var(--t2);}
+.btn-senha{width:100%;padding:14px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:background 0.15s,transform 0.1s,box-shadow 0.15s;box-shadow:0 4px 16px rgba(232,98,10,0.35);}
+.btn-senha:active{transform:scale(0.97);background:#c4510a;}
+.senha-error{display:none;background:rgba(239,68,68,0.10);border:1px solid rgba(239,68,68,0.25);color:#f87171;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:500;text-align:center;animation:shake 0.35s ease;}
+.senha-error.show{display:block;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
+.senha-attempts{font-size:11px;color:var(--t3);text-align:center;margin-top:2px;}
+
 @media print{
-  html,body{overflow:visible;height:auto;background:#fff!important;}
-  .screen{display:block!important;}
-  #screen-home,#screen-consulta,#screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
-  .etiqueta-wrapper{display:block!important;}
+html,body{overflow:visible;height:auto;background:#fff!important;}
+.screen{display:block!important;}
+#screen-home,#screen-consulta,#screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
+.etiqueta-wrapper{display:block!important;}
 }
 </style>
+
 </head>
 <body>
 
+<!-- SENHA (aparece ao abrir via QR Code) -->
+
+<div class="screen" id="screen-senha">
+  <div class="senha-glow"></div>
+  <div class="senha-grid"></div>
+  <div class="senha-container">
+    <div class="senha-logo">🔒</div>
+    <div class="senha-title">Acesso Restrito</div>
+    <div class="senha-sub">Este conteúdo é protegido.<br>Insira a senha para visualizar o item.</div>
+    <div class="senha-card">
+      <div class="senha-card-head">
+        <div class="senha-card-head-icon">🔑</div>
+        <div class="senha-card-head-title">Autenticação necessária</div>
+      </div>
+      <div class="senha-card-body">
+        <div class="senha-input-wrap">
+          <input class="senha-input" type="password" id="senhaInput" placeholder="Digite a senha..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
+          <button class="senha-toggle" id="senhaToggle" type="button" title="Mostrar/ocultar">👁</button>
+        </div>
+        <div class="senha-error" id="senhaError">❌ Senha incorreta. Tente novamente.</div>
+        <button class="btn-senha" id="btnConfirmarSenha">Confirmar →</button>
+        <div class="senha-attempts" id="senhaAttempts"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- HOME -->
+
 <div class="screen active" id="screen-home">
   <div class="home-hero">
     <div class="hero-glow"></div>
@@ -156,6 +213,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 </div>
 
 <!-- CONSULTA -->
+
 <div class="screen" id="screen-consulta">
   <div class="topbar">
     <button class="back-btn" id="back-consulta">←</button>
@@ -201,6 +259,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 </div>
 
 <!-- ETIQUETA -->
+
 <div class="screen" id="screen-etiqueta">
   <div class="topbar">
     <button class="back-btn" id="back-etiqueta">←</button>
@@ -277,6 +336,74 @@ var CAMPOS = [
   {col:"Validade",   label:"Validade",   icon:"📅"},
   {col:"Status",     label:"Status",     icon:"✅"}
 ];
+
+// ═══════════════════════════════════════════════
+// SENHA — intercepta ANTES de tudo
+// ═══════════════════════════════════════════════
+var SENHA_CORRETA = "condornaoletal";
+var _pendingQrId  = null;
+
+(function interceptarQR(){
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get("id");
+    if (!id || !id.trim()) return; // acesso normal → home
+    _pendingQrId = id.trim();
+
+    // Mostra tela de senha imediatamente (antes de qualquer outra tela)
+    document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
+    document.getElementById("screen-senha").classList.add("active");
+    window.scrollTo(0,0);
+
+    var tentativas = 0;
+    var maxTentativas = 5;
+
+    var input   = document.getElementById("senhaInput");
+    var btnConf = document.getElementById("btnConfirmarSenha");
+    var errBox  = document.getElementById("senhaError");
+    var attBox  = document.getElementById("senhaAttempts");
+    var toggle  = document.getElementById("senhaToggle");
+
+    toggle.addEventListener("click", function(){
+      input.type = input.type === "password" ? "text" : "password";
+      toggle.textContent = input.type === "password" ? "👁" : "🙈";
+    });
+
+    function confirmar(){
+      if (input.value === SENHA_CORRETA) {
+        errBox.classList.remove("show");
+        // Vai para consulta e busca após autenticação
+        document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
+        document.getElementById("screen-consulta").classList.add("active");
+        window.scrollTo(0,0);
+        document.getElementById("idInputConsulta").value = _pendingQrId;
+        buscar();
+      } else {
+        tentativas++;
+        errBox.classList.remove("show");
+        void errBox.offsetWidth;
+        errBox.classList.add("show");
+        input.value = "";
+        input.focus();
+        var rest = maxTentativas - tentativas;
+        if (rest > 0) {
+          attBox.textContent = rest + " tentativa" + (rest===1?"":"s") + " restante" + (rest===1?"":"s") + ".";
+        } else {
+          attBox.textContent = "Muitas tentativas incorretas.";
+          btnConf.disabled = true;
+          input.disabled = true;
+          btnConf.style.opacity = "0.5";
+          input.style.opacity  = "0.5";
+        }
+      }
+    }
+
+    btnConf.addEventListener("click", confirmar);
+    input.addEventListener("keydown", function(e){ if(e.key==="Enter") confirmar(); });
+    setTimeout(function(){ input.focus(); }, 150);
+
+  } catch(e){}
+})();
 
 // ═══════════════════════════════════════════════
 // NAVEGAÇÃO
@@ -441,39 +568,27 @@ function gerarEtiqueta() {
           '<title>Palete '+id.toUpperCase()+' - Condor</title>' +
           '<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">' +
           '<style>'+estilos+'</style>' +
-          '</head><body>' +
-          document.getElementById("etiquetaWrapper").innerHTML +
-          '<script>window.onload=function(){window.print();}<\/script>' +
-          '</body></html>';
 
-        var blob = new Blob([html], {type: "text/html;charset=utf-8"});
-        var url  = URL.createObjectURL(blob);
-        btnP.href = url;
-        btnP.style.display = "block";
-      }, 300);
-    })
-    .catch(function(){ msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
+```
+      '</head><body>' +
+      document.getElementById("etiquetaWrapper").innerHTML +
+      '<script>window.onload=function(){window.print();}<\/script>' +
+      '</body></html>';
+
+    var blob = new Blob([html], {type: "text/html;charset=utf-8"});
+    var url  = URL.createObjectURL(blob);
+    btnP.href = url;
+    btnP.style.display = "block";
+  }, 300);
+})
+.catch(function(){ msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
+```
+
 }
 
-document.getElementById("btn-gerar").addEventListener("click", gerarEtiqueta);
-document.getElementById("idInputEtiqueta").addEventListener("keydown", function(e){ if (e.key === "Enter") gerarEtiqueta(); });
+document.getElementById(“btn-gerar”).addEventListener(“click”, gerarEtiqueta);
+document.getElementById(“idInputEtiqueta”).addEventListener(“keydown”, function(e){ if (e.key === “Enter”) gerarEtiqueta(); });
 
-// ═══════════════════════════════════════════════
-// AUTO-BUSCA por ?id= na URL
-// GitHub Pages repassa ?id= direto — sem iframe bloqueando
-// QR Code aponta para: https://usuario.github.io/condor/?id=PAL001
-// ═══════════════════════════════════════════════
-(function(){
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var id = params.get("id");
-    if (id && id.trim()) {
-      irPara("screen-consulta");
-      document.getElementById("idInputConsulta").value = id.trim();
-      buscar();
-    }
-  } catch(e) {}
-})();
 </script>
 </body>
 </html>
