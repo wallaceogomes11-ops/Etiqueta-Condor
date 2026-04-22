@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 <title>Condor — Sistema de Estoque</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;font-family:'DM Sans',Arial,sans-serif;background:#0c0c0f;color:#eeeef0;overflow-x:hidden;}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:#eeeef0;overflow-x:hidden;}
 :root{
   --orange:#E8620A;--orange-dim:rgba(232,98,10,0.15);--orange-border:rgba(232,98,10,0.35);
   --bg:#0c0c0f;--s1:#131317;--s2:#1a1a20;--border:#2a2a34;--border2:#36363f;
@@ -58,6 +56,8 @@ html,body{height:100%;font-family:'DM Sans',Arial,sans-serif;background:#0c0c0f;
 .app-input{flex:1;background:var(--s2);border:1.5px solid var(--border2);border-radius:11px;padding:13px 14px;font-size:15px;color:var(--t1);outline:none;transition:border-color 0.2s;font-family:var(--font-body);}
 .app-input:focus{border-color:var(--orange);background:rgba(232,98,10,0.04);}
 .app-input::placeholder{color:var(--t3);}
+.app-input.shake{animation:shake 0.4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(8px);}60%{transform:translateX(-6px);}80%{transform:translateX(6px);}}
 .btn-primary{padding:13px 18px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:var(--font-body);transition:background 0.15s,transform 0.1s;box-shadow:0 4px 16px rgba(232,98,10,0.35);}
 .btn-primary:active{transform:scale(0.96);background:#c4510a;}
 .result-wrap{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);}
@@ -86,14 +86,7 @@ html,body{height:100%;font-family:'DM Sans',Arial,sans-serif;background:#0c0c0f;
 .loading-box{display:flex;flex-direction:column;align-items:center;gap:12px;padding:36px;color:var(--t2);font-size:13px;}
 .spinner{width:22px;height:22px;border:2.5px solid var(--border2);border-top-color:var(--orange);border-radius:50%;animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.btn-imprimir{
-  width:100%;padding:14px;border:none;border-radius:11px;
-  background:var(--orange);color:#fff;font-size:14px;font-weight:600;
-  cursor:pointer;display:none;font-family:var(--font-body);
-  transition:background 0.15s,transform 0.1s;
-  box-shadow:0 4px 16px rgba(232,98,10,0.35);
-  text-decoration:none;text-align:center;
-}
+.btn-imprimir{width:100%;padding:14px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:none;font-family:var(--font-body);transition:background 0.15s,transform 0.1s;box-shadow:0 4px 16px rgba(232,98,10,0.35);text-decoration:none;text-align:center;}
 .btn-imprimir:active{transform:scale(0.97);}
 .etiqueta-wrapper{display:none;}
 .etiqueta{width:210mm;min-height:297mm;background:#fff;padding:12mm;display:flex;flex-direction:column;color:#1a1a1a;font-family:'DM Sans',Arial,sans-serif;}
@@ -114,73 +107,44 @@ html,body{height:100%;font-family:'DM Sans',Arial,sans-serif;background:#0c0c0f;
 #etiqueta-qrcode{display:flex;justify-content:center;}
 #etiqueta-qrcode canvas,#etiqueta-qrcode img{border:3px solid #111;border-radius:6px;padding:3px;}
 .qr-label-grande{font-size:8pt;color:#aaa;letter-spacing:2px;text-transform:uppercase;text-align:center;}
-/* ── TELA DE SENHA ── */
-#screen-senha{background:var(--bg);align-items:center;justify-content:center;}
+
+/* ══════════════════════════════
+   TELA DE SENHA (nova)
+══════════════════════════════ */
+#screen-senha{background:var(--bg);justify-content:center;align-items:center;}
 .senha-container{width:100%;max-width:380px;padding:24px 20px;display:flex;flex-direction:column;align-items:center;gap:0;}
-.senha-glow{position:fixed;top:0;left:50%;transform:translateX(-50%);width:400px;height:260px;background:radial-gradient(ellipse at center,rgba(232,98,10,0.14) 0%,transparent 70%);pointer-events:none;}
-.senha-grid{position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:32px 32px;opacity:0.18;pointer-events:none;}
-.senha-logo{width:72px;height:72px;border-radius:20px;background:var(--s2);border:1.5px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 0 32px rgba(232,98,10,0.22);margin-bottom:22px;position:relative;}
-.senha-logo::before{content:'';position:absolute;inset:-5px;border-radius:25px;border:1px solid var(--orange-border);opacity:0.35;}
-.senha-title{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-0.4px;margin-bottom:6px;text-align:center;}
-.senha-sub{font-size:13px;color:var(--t2);text-align:center;line-height:1.6;margin-bottom:28px;}
-.senha-card{width:100%;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
-.senha-card-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
-.senha-card-head-icon{width:32px;height:32px;border-radius:9px;background:var(--s2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
-.senha-card-head-title{font-size:13px;font-weight:600;color:var(--t1);font-family:var(--font-display);}
-.senha-card-body{padding:18px;display:flex;flex-direction:column;gap:12px;}
-.senha-input-wrap{position:relative;display:flex;align-items:center;}
-.senha-input{width:100%;background:var(--s2);border:1.5px solid var(--border2);border-radius:11px;padding:14px 46px 14px 14px;font-size:15px;color:var(--t1);outline:none;transition:border-color 0.2s,background 0.2s;font-family:var(--font-body);letter-spacing:2px;}
-.senha-input:focus{border-color:var(--orange);background:rgba(232,98,10,0.04);}
-.senha-input::placeholder{color:var(--t3);letter-spacing:0;}
-.senha-toggle{position:absolute;right:14px;background:none;border:none;cursor:pointer;color:var(--t3);font-size:17px;padding:4px;transition:color 0.2s;line-height:1;}
-.senha-toggle:hover{color:var(--t2);}
-.btn-senha{width:100%;padding:14px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:background 0.15s,transform 0.1s,box-shadow 0.15s;box-shadow:0 4px 16px rgba(232,98,10,0.35);}
-.btn-senha:active{transform:scale(0.97);background:#c4510a;}
-.senha-error{display:none;background:rgba(239,68,68,0.10);border:1px solid rgba(239,68,68,0.25);color:#f87171;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:500;text-align:center;animation:shake 0.35s ease;}
-.senha-error.show{display:block;}
-@keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
-.senha-attempts{font-size:11px;color:var(--t3);text-align:center;margin-top:2px;}
+.senha-lock{width:72px;height:72px;border-radius:20px;background:var(--s2);border:1.5px solid var(--orange-border);display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:20px;box-shadow:0 0 28px rgba(232,98,10,0.18);}
+.senha-titulo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--t1);margin-bottom:6px;text-align:center;}
+.senha-sub{font-size:13px;color:var(--t2);text-align:center;margin-bottom:28px;line-height:1.6;}
+.senha-id-badge{background:var(--orange-dim);border:1px solid var(--orange-border);border-radius:8px;padding:6px 14px;font-size:12px;color:var(--orange);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
+.senha-form{width:100%;display:flex;flex-direction:column;gap:12px;}
+.senha-input-wrap{position:relative;width:100%;}
+.senha-input{width:100%;background:var(--s2);border:1.5px solid var(--border2);border-radius:11px;padding:14px 50px 14px 16px;font-size:16px;color:var(--t1);outline:none;transition:border-color 0.2s,box-shadow 0.2s;font-family:var(--font-body);letter-spacing:3px;}
+.senha-input:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,98,10,0.12);}
+.senha-input::placeholder{letter-spacing:normal;color:var(--t3);}
+.senha-input.erro{border-color:#f87171;box-shadow:0 0 0 3px rgba(239,68,68,0.12);animation:shake 0.4s ease;}
+.toggle-senha{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:4px;line-height:1;}
+.btn-confirmar{width:100%;padding:15px;border:none;border-radius:11px;background:var(--orange);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--font-display);transition:background 0.15s,transform 0.1s;box-shadow:0 4px 20px rgba(232,98,10,0.4);letter-spacing:0.3px;}
+.btn-confirmar:active{transform:scale(0.97);background:#c4510a;}
+.tentativas-aviso{font-size:12px;color:#f87171;text-align:center;min-height:18px;transition:opacity 0.2s;}
+.tentativas-aviso:empty{opacity:0;}
+.btn-voltar-senha{background:none;border:none;color:var(--t3);font-size:13px;cursor:pointer;margin-top:8px;font-family:var(--font-body);text-decoration:underline;text-underline-offset:3px;}
+.bloqueado-box{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:20px;text-align:center;width:100%;display:none;}
+.bloqueado-box .bl-icon{font-size:32px;margin-bottom:10px;}
+.bloqueado-box p{color:#f87171;font-size:14px;font-weight:600;margin-bottom:6px;}
+.bloqueado-box span{color:var(--t2);font-size:12px;}
 
 @media print{
-html,body{overflow:visible;height:auto;background:#fff!important;}
-.screen{display:block!important;}
-#screen-home,#screen-consulta,#screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
-.etiqueta-wrapper{display:block!important;}
+  html,body{overflow:visible;height:auto;background:#fff!important;}
+  .screen{display:block!important;}
+  #screen-home,#screen-consulta,#screen-senha,#screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
+  .etiqueta-wrapper{display:block!important;}
 }
 </style>
-
 </head>
 <body>
 
-<!-- SENHA (aparece ao abrir via QR Code) -->
-
-<div class="screen" id="screen-senha">
-  <div class="senha-glow"></div>
-  <div class="senha-grid"></div>
-  <div class="senha-container">
-    <div class="senha-logo">🔒</div>
-    <div class="senha-title">Acesso Restrito</div>
-    <div class="senha-sub">Este conteúdo é protegido.<br>Insira a senha para visualizar o item.</div>
-    <div class="senha-card">
-      <div class="senha-card-head">
-        <div class="senha-card-head-icon">🔑</div>
-        <div class="senha-card-head-title">Autenticação necessária</div>
-      </div>
-      <div class="senha-card-body">
-        <div class="senha-input-wrap">
-          <input class="senha-input" type="password" id="senhaInput" placeholder="Digite a senha..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
-          <button class="senha-toggle" id="senhaToggle" type="button" title="Mostrar/ocultar">👁</button>
-        </div>
-        <div class="senha-error" id="senhaError">❌ Senha incorreta. Tente novamente.</div>
-        <button class="btn-senha" id="btnConfirmarSenha">Confirmar →</button>
-        <div class="senha-attempts" id="senhaAttempts"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- HOME -->
-
 <div class="screen active" id="screen-home">
   <div class="home-hero">
     <div class="hero-glow"></div>
@@ -210,11 +174,38 @@ html,body{overflow:visible;height:auto;background:#fff!important;}
       <div class="opt-arr">›</div>
     </button>
   </div>
-  <div class="home-footer">Condor Tecnologias Não-Letais · v3.2</div>
+  <div class="home-footer">Condor Tecnologias Não-Letais · v3.3</div>
+</div>
+
+<!-- TELA DE SENHA (nova) -->
+<div class="screen" id="screen-senha">
+  <div class="senha-container">
+    <div class="senha-lock">🔒</div>
+    <div class="senha-titulo">Acesso Restrito</div>
+    <div class="senha-sub">Esta consulta requer autenticação.<br>Insira a senha para visualizar o item.</div>
+    <div class="senha-id-badge" id="senha-id-badge">ID: —</div>
+
+    <div class="senha-form" id="senhaFormArea">
+      <div class="senha-input-wrap">
+        <input class="senha-input" type="password" id="senhaInput" placeholder="Digite a senha..." autocomplete="off" maxlength="20"/>
+        <button class="toggle-senha" id="toggleSenha" type="button" title="Mostrar/ocultar senha">👁</button>
+      </div>
+      <div class="tentativas-aviso" id="tentativasAviso"></div>
+      <button class="btn-confirmar" id="btnConfirmarSenha">Confirmar acesso →</button>
+      <button class="btn-voltar-senha" id="btnVoltarSenha">Voltar ao início</button>
+    </div>
+
+    <div class="bloqueado-box" id="bloqueadoBox">
+      <div class="bl-icon">🚫</div>
+      <p>Acesso temporariamente bloqueado</p>
+      <span>Muitas tentativas incorretas. Aguarde <strong id="countdownTxt">60</strong> segundos.</span>
+      <br><br>
+      <button class="btn-voltar-senha" id="btnVoltarBloqueado">Voltar ao início</button>
+    </div>
+  </div>
 </div>
 
 <!-- CONSULTA -->
-
 <div class="screen" id="screen-consulta">
   <div class="topbar">
     <button class="back-btn" id="back-consulta">←</button>
@@ -236,7 +227,7 @@ html,body{overflow:visible;height:auto;background:#fff!important;}
           <div style="font-size:14px;color:var(--t2);line-height:1.8;">
             Abra a <strong style="color:var(--t1)">câmera nativa</strong> do seu celular<br>
             e aponte para o QR Code da etiqueta.<br>
-            O resultado abre <strong style="color:var(--orange)">automaticamente</strong>.
+            O sistema pedirá a senha <strong style="color:var(--orange)">antes de exibir</strong> o item.
           </div>
         </div>
       </div>
@@ -260,7 +251,6 @@ html,body{overflow:visible;height:auto;background:#fff!important;}
 </div>
 
 <!-- ETIQUETA -->
-
 <div class="screen" id="screen-etiqueta">
   <div class="topbar">
     <button class="back-btn" id="back-etiqueta">←</button>
@@ -329,6 +319,14 @@ html,body{overflow:visible;height:auto;background:#fff!important;}
 // ═══════════════════════════════════════════════
 var SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRyUZ_F6JuvQcVaIAPQCtQH-4CTi6zn-MIXVktxX6fxdh_eUr5aAZOftF--294824T6MrBIs-1ZCxdv/pub?gid=0&single=true&output=csv";
 var SITE_URL  = "https://wallaceogomes11-ops.github.io/Condor/";
+
+// ★ DEFINA A SENHA AQUI ★
+var SENHA_CORRETA = "condor2024";
+
+// Configurações de bloqueio
+var MAX_TENTATIVAS = 5;       // tentativas antes de bloquear
+var TEMPO_BLOQUEIO = 60;      // segundos de bloqueio
+
 var CAMPOS = [
   {col:"MICROSIGA",  label:"Micro Siga", icon:"🏷️"},
   {col:"Descrição",  label:"Descrição",  icon:"📝"},
@@ -339,75 +337,12 @@ var CAMPOS = [
 ];
 
 // ═══════════════════════════════════════════════
-// SENHA — intercepta ANTES de tudo
+// ESTADO DA SENHA
 // ═══════════════════════════════════════════════
-var SENHA_CORRETA = "condornaoletal";
-var _pendingQrId  = null;
-
-(function interceptarQR(){
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var id = params.get("id");
-    // Sem ?id= → mantém home normalmente
-    if (!id || !id.trim()) {
-      return;
-    }
-
-    // Com ?id= → troca imediatamente para tela de senha
-    _pendingQrId = id.trim();
-    document.getElementById("screen-home").classList.remove("active");
-    document.getElementById("screen-senha").classList.add("active");
-    window.scrollTo(0,0);
-
-    var tentativas = 0;
-    var maxTentativas = 5;
-
-    var input   = document.getElementById("senhaInput");
-    var btnConf = document.getElementById("btnConfirmarSenha");
-    var errBox  = document.getElementById("senhaError");
-    var attBox  = document.getElementById("senhaAttempts");
-    var toggle  = document.getElementById("senhaToggle");
-
-    toggle.addEventListener("click", function(){
-      input.type = input.type === "password" ? "text" : "password";
-      toggle.textContent = input.type === "password" ? "👁" : "🙈";
-    });
-
-    function confirmar(){
-      if (input.value === SENHA_CORRETA) {
-        errBox.classList.remove("show");
-        // Vai para consulta e busca após autenticação
-        document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
-        document.getElementById("screen-consulta").classList.add("active");
-        window.scrollTo(0,0);
-        document.getElementById("idInputConsulta").value = _pendingQrId;
-        buscar();
-      } else {
-        tentativas++;
-        errBox.classList.remove("show");
-        void errBox.offsetWidth;
-        errBox.classList.add("show");
-        input.value = "";
-        input.focus();
-        var rest = maxTentativas - tentativas;
-        if (rest > 0) {
-          attBox.textContent = rest + " tentativa" + (rest===1?"":"s") + " restante" + (rest===1?"":"s") + ".";
-        } else {
-          attBox.textContent = "Muitas tentativas incorretas.";
-          btnConf.disabled = true;
-          input.disabled = true;
-          btnConf.style.opacity = "0.5";
-          input.style.opacity  = "0.5";
-        }
-      }
-    }
-
-    btnConf.addEventListener("click", confirmar);
-    input.addEventListener("keydown", function(e){ if(e.key==="Enter") confirmar(); });
-    setTimeout(function(){ input.focus(); }, 150);
-
-  } catch(e){}
-})();
+var tentativas = 0;
+var bloqueadoAte = 0;
+var idPendente = "";
+var countdownInterval = null;
 
 // ═══════════════════════════════════════════════
 // NAVEGAÇÃO
@@ -422,6 +357,98 @@ document.getElementById("btn-ir-consulta").addEventListener("click", function(){
 document.getElementById("btn-ir-etiqueta").addEventListener("click", function(){ irPara("screen-etiqueta"); });
 document.getElementById("back-consulta").addEventListener("click",   function(){ irPara("screen-home"); });
 document.getElementById("back-etiqueta").addEventListener("click",   function(){ irPara("screen-home"); });
+document.getElementById("btnVoltarSenha").addEventListener("click",  function(){ irPara("screen-home"); });
+document.getElementById("btnVoltarBloqueado").addEventListener("click", function(){ irPara("screen-home"); });
+
+// ═══════════════════════════════════════════════
+// TELA DE SENHA
+// ═══════════════════════════════════════════════
+function abrirTelaSenha(id) {
+  idPendente = id;
+  document.getElementById("senha-id-badge").textContent = "ID: " + id.toUpperCase();
+  document.getElementById("senhaInput").value = "";
+  document.getElementById("tentativasAviso").textContent = "";
+
+  var agora = Date.now();
+  if (bloqueadoAte > agora) {
+    mostrarBloqueio();
+  } else {
+    document.getElementById("senhaFormArea").style.display = "flex";
+    document.getElementById("bloqueadoBox").style.display = "none";
+  }
+
+  irPara("screen-senha");
+  setTimeout(function(){ document.getElementById("senhaInput").focus(); }, 300);
+}
+
+function mostrarBloqueio() {
+  document.getElementById("senhaFormArea").style.display = "none";
+  document.getElementById("bloqueadoBox").style.display = "block";
+  iniciarContagem();
+}
+
+function iniciarContagem() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  countdownInterval = setInterval(function() {
+    var restante = Math.ceil((bloqueadoAte - Date.now()) / 1000);
+    if (restante <= 0) {
+      clearInterval(countdownInterval);
+      tentativas = 0;
+      document.getElementById("senhaFormArea").style.display = "flex";
+      document.getElementById("bloqueadoBox").style.display = "none";
+      document.getElementById("tentativasAviso").textContent = "";
+      document.getElementById("senhaInput").value = "";
+      setTimeout(function(){ document.getElementById("senhaInput").focus(); }, 100);
+    } else {
+      document.getElementById("countdownTxt").textContent = restante;
+    }
+  }, 500);
+}
+
+function confirmarSenha() {
+  var agora = Date.now();
+  if (bloqueadoAte > agora) { mostrarBloqueio(); return; }
+
+  var digitada = document.getElementById("senhaInput").value;
+  if (digitada === SENHA_CORRETA) {
+    tentativas = 0;
+    irPara("screen-consulta");
+    document.getElementById("idInputConsulta").value = idPendente;
+    buscar();
+  } else {
+    tentativas++;
+    var restantes = MAX_TENTATIVAS - tentativas;
+    var input = document.getElementById("senhaInput");
+    input.classList.remove("erro");
+    void input.offsetWidth; // força reflow para reiniciar animação
+    input.classList.add("erro");
+    input.value = "";
+
+    if (tentativas >= MAX_TENTATIVAS) {
+      bloqueadoAte = Date.now() + TEMPO_BLOQUEIO * 1000;
+      mostrarBloqueio();
+    } else {
+      var aviso = document.getElementById("tentativasAviso");
+      aviso.textContent = "Senha incorreta. " + restantes + " tentativa" + (restantes === 1 ? "" : "s") + " restante" + (restantes === 1 ? "." : "s.");
+    }
+  }
+}
+
+document.getElementById("btnConfirmarSenha").addEventListener("click", confirmarSenha);
+document.getElementById("senhaInput").addEventListener("keydown", function(e){ if (e.key === "Enter") confirmarSenha(); });
+
+// Toggle mostrar/ocultar senha
+document.getElementById("toggleSenha").addEventListener("click", function(){
+  var inp = document.getElementById("senhaInput");
+  inp.type = inp.type === "password" ? "text" : "password";
+  this.textContent = inp.type === "password" ? "👁" : "🙈";
+});
+
+// Remove classe de erro ao começar a digitar novamente
+document.getElementById("senhaInput").addEventListener("input", function(){
+  this.classList.remove("erro");
+  document.getElementById("tentativasAviso").textContent = "";
+});
 
 // ═══════════════════════════════════════════════
 // HELPERS
@@ -528,8 +555,6 @@ function gerarEtiqueta() {
       document.getElementById("el-id").textContent         = id.toUpperCase();
       document.getElementById("el-data").textContent       = new Date().toLocaleDateString("pt-BR");
 
-      // ✅ CORREÇÃO PRINCIPAL: QR Code usa # (hash) em vez de ?id=
-      // O Google Sites preserva o hash, mas pode cortar query strings
       var qrDiv = document.getElementById("etiqueta-qrcode");
       qrDiv.innerHTML = "";
       var urlCompleta = SITE_URL + "?id=" + encodeURIComponent(id);
@@ -572,27 +597,35 @@ function gerarEtiqueta() {
           '<title>Palete '+id.toUpperCase()+' - Condor</title>' +
           '<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">' +
           '<style>'+estilos+'</style>' +
+          '</head><body>' +
+          document.getElementById("etiquetaWrapper").innerHTML +
+          '<script>window.onload=function(){window.print();}<\/script>' +
+          '</body></html>';
 
-```
-      '</head><body>' +
-      document.getElementById("etiquetaWrapper").innerHTML +
-      '<script>window.onload=function(){window.print();}<\/script>' +
-      '</body></html>';
-
-    var blob = new Blob([html], {type: "text/html;charset=utf-8"});
-    var url  = URL.createObjectURL(blob);
-    btnP.href = url;
-    btnP.style.display = "block";
-  }, 300);
-})
-.catch(function(){ msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
-```
-
+        var blob = new Blob([html], {type: "text/html;charset=utf-8"});
+        var url  = URL.createObjectURL(blob);
+        btnP.href = url;
+        btnP.style.display = "block";
+      }, 300);
+    })
+    .catch(function(){ msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
 }
 
-document.getElementById(“btn-gerar”).addEventListener(“click”, gerarEtiqueta);
-document.getElementById(“idInputEtiqueta”).addEventListener(“keydown”, function(e){ if (e.key === “Enter”) gerarEtiqueta(); });
+document.getElementById("btn-gerar").addEventListener("click", gerarEtiqueta);
+document.getElementById("idInputEtiqueta").addEventListener("keydown", function(e){ if (e.key === "Enter") gerarEtiqueta(); });
 
+// ═══════════════════════════════════════════════
+// AUTO-BUSCA por ?id= na URL  ← agora passa pela TELA DE SENHA
+// ═══════════════════════════════════════════════
+(function(){
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get("id");
+    if (id && id.trim()) {
+      abrirTelaSenha(id.trim());
+    }
+  } catch(e) {}
+})();
 </script>
 </body>
 </html>
