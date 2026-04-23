@@ -304,7 +304,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
   <div class="etiqueta-wrapper" id="etiquetaWrapper">
     <div class="etiqueta">
       <div class="etiqueta-header">
-        <img src="https://www.condornaoletal.com.br/themes/custom/condor/logo.svg" alt="Logo Condor">
+       <img id="logoEtiqueta" src="" alt="Logo Condor">
         <div class="etiqueta-titulo">
           <h1>Identificação de Palete</h1>
           <p>Condor Tecnologias Não-Letais</p>
@@ -477,7 +477,7 @@ function gerarEtiqueta() {
       document.getElementById("el-validade").textContent   = findField(item,"Validade") || "—";
       document.getElementById("el-id").textContent         = id.toUpperCase();
       document.getElementById("el-data").textContent       = new Date().toLocaleDateString("pt-BR");
-
+document.getElementById("logoEtiqueta").src = LOGO_URL;
       var qrDiv = document.getElementById("etiqueta-qrcode");
       qrDiv.innerHTML = "";
       var urlCompleta = SITE_URL + "?id=" + encodeURIComponent(id);
