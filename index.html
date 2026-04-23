@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
@@ -100,10 +101,10 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 
 /* ─── Etiqueta Padrão (por ID) ─── */
 .etiqueta-wrapper{display:none;}
-.etiqueta{width:210mm;min-height:297mm;background:#fff;padding:12mm;display:flex;flex-direction:column;color:#1a1a1a;font-family:'DM Sans',Arial,sans-serif;}
+.etiqueta{width:210mm;min-height:297mm;background:#fff;padding:12mm;display:flex;flex-direction:column;color:#1a1a1a;font-family:‘DM Sans’,Arial,sans-serif;}
 .etiqueta-header{display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #E8620A;padding-bottom:7mm;margin-bottom:8mm;}
 .etiqueta-header img{height:18mm;object-fit:contain;}
-.etiqueta-titulo h1{font-size:18pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:'Syne',Arial,sans-serif;}
+.etiqueta-titulo h1{font-size:18pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:‘Syne’,Arial,sans-serif;}
 .etiqueta-titulo p{font-size:8pt;color:#999;letter-spacing:2px;text-transform:uppercase;text-align:right;margin-top:2mm;}
 .campos{display:flex;flex-direction:column;gap:4mm;}
 .campo-bloco{border:1.5px solid #e8e8e8;border-radius:6px;padding:4mm 5mm;background:#fafafa;}
@@ -122,23 +123,23 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 /* ─── Etiqueta por Endereço (meia folha A4) ─── */
 .etiqueta-end-wrapper{display:none;}
 .etiqueta-end{
-  width:210mm;
-  min-height:148mm; /* metade do A4 */
-  max-height:148mm;
-  background:#fff;
-  padding:8mm 12mm;
-  display:flex;
-  flex-direction:column;
-  color:#1a1a1a;
-  font-family:'DM Sans',Arial,sans-serif;
-  overflow:hidden;
+width:210mm;
+min-height:148mm; /* metade do A4 */
+max-height:148mm;
+background:#fff;
+padding:8mm 12mm;
+display:flex;
+flex-direction:column;
+color:#1a1a1a;
+font-family:‘DM Sans’,Arial,sans-serif;
+overflow:hidden;
 }
 .etiqueta-end .etiqueta-header{
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:4px solid #E8620A;padding-bottom:4mm;margin-bottom:5mm;
+display:flex;align-items:center;justify-content:space-between;
+border-bottom:4px solid #E8620A;padding-bottom:4mm;margin-bottom:5mm;
 }
 .etiqueta-end .etiqueta-header img{height:14mm;object-fit:contain;}
-.etiqueta-end .etiqueta-titulo h1{font-size:14pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:'Syne',Arial,sans-serif;}
+.etiqueta-end .etiqueta-titulo h1{font-size:14pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:‘Syne’,Arial,sans-serif;}
 .etiqueta-end .etiqueta-titulo p{font-size:7pt;color:#999;letter-spacing:2px;text-transform:uppercase;text-align:right;margin-top:1mm;}
 .end-meta{display:flex;gap:4mm;margin-bottom:5mm;}
 .end-meta-bloco{flex:1;border:1.5px solid #e8e8e8;border-radius:6px;padding:3mm 4mm;background:#fafafa;}
@@ -146,32 +147,34 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 .end-meta-label{font-size:6pt;font-weight:700;color:#E8620A;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5mm;}
 .end-meta-valor{font-size:13pt;font-weight:800;color:#111;line-height:1.1;}
 .end-table-wrapper{flex:1;overflow:hidden;}
-.end-table{width:100%;border-collapse:collapse;font-size:8.5pt;}
+.end-table{width:100%;border-collapse:collapse;}
 .end-table thead tr{background:#E8620A;}
-.end-table thead th{color:#fff;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2.5mm 3mm;text-align:left;font-size:7pt;}
+.end-table thead th{color:#fff;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3mm 4mm;text-align:left;font-size:8pt;}
 .end-table tbody tr:nth-child(even){background:#f9f9f9;}
 .end-table tbody tr:nth-child(odd){background:#fff;}
-.end-table tbody td{padding:2mm 3mm;color:#222;border-bottom:1px solid #ebebeb;vertical-align:top;}
-.end-table tbody td.td-pedido{font-weight:700;color:#E8620A;white-space:nowrap;}
-.end-table tbody td.td-qty{font-weight:800;text-align:center;font-size:10pt;}
+.end-table tbody td{color:#222;border-bottom:1px solid #ebebeb;vertical-align:middle;}
+.end-table tbody td.td-pedido{font-weight:800;color:#E8620A;white-space:nowrap;}
+.end-table tbody td.td-qty{font-weight:900;text-align:center;color:#111;}
 .end-rodape{margin-top:4mm;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #E8620A;padding-top:3mm;}
 .end-rodape-data{font-size:7pt;color:#aaa;letter-spacing:1px;}
 .end-rodape-total{font-size:8pt;font-weight:700;color:#E8620A;letter-spacing:1px;text-transform:uppercase;}
 
 @media print{
-  html,body{overflow:visible;height:auto;background:#fff!important;}
-  .screen{display:block!important;}
-  #screen-home,#screen-consulta,#screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
-  .etiqueta-wrapper{display:block!important;}
-  .etiqueta-end-wrapper{display:block!important;}
+html,body{overflow:visible;height:auto;background:#fff!important;}
+.screen{display:block!important;}
+#screen-home,#screen-consulta,#screen-etiqueta .topbar,#screen-etiqueta .sub-body{display:none!important;}
+.etiqueta-wrapper{display:block!important;}
+.etiqueta-end-wrapper{display:block!important;}
 }
 </style>
+
 </head>
 <body>
 
 <!-- ═══════════════════════════════════════════
      HOME
 ════════════════════════════════════════════ -->
+
 <div class="screen active" id="screen-home">
   <div class="home-hero">
     <div class="hero-glow"></div>
@@ -207,6 +210,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 <!-- ═══════════════════════════════════════════
      CONSULTA
 ════════════════════════════════════════════ -->
+
 <div class="screen" id="screen-consulta">
   <div class="topbar">
     <button class="back-btn" id="back-consulta">←</button>
@@ -254,6 +258,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
 <!-- ═══════════════════════════════════════════
      ETIQUETA (Gerar Palete)
 ════════════════════════════════════════════ -->
+
 <div class="screen" id="screen-etiqueta">
   <div class="topbar">
     <button class="back-btn" id="back-etiqueta">←</button>
@@ -265,45 +270,48 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
   </div>
   <div class="sub-body">
 
-    <!-- ── Bloco 1: Gerar por ID (original, intacto) ── -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-head-icon">🏷️</div>
-        <div class="card-head-title">Gerar etiqueta por ID</div>
-      </div>
-      <div class="card-body">
-        <div class="input-row">
-          <input class="app-input" type="text" id="idInputEtiqueta" placeholder="Digite o ID do item..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
-          <button class="btn-primary" id="btn-gerar">Gerar</button>
-        </div>
-        <div id="painelMsg" class="state-box" style="padding:12px 0 0;">
-          <span class="ico" style="font-size:24px;">🏷️</span>Insira o ID e clique em Gerar.
-        </div>
-        <a class="btn-imprimir" id="btnImprimir" href="#" target="_blank" rel="noopener">🖨️ Imprimir / Salvar PDF</a>
-      </div>
+```
+<!-- ── Bloco 1: Gerar por ID (original, intacto) ── -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-head-icon">🏷️</div>
+    <div class="card-head-title">Gerar etiqueta por ID</div>
+  </div>
+  <div class="card-body">
+    <div class="input-row">
+      <input class="app-input" type="text" id="idInputEtiqueta" placeholder="Digite o ID do item..." autocomplete="off" autocorrect="off" autocapitalize="off"/>
+      <button class="btn-primary" id="btn-gerar">Gerar</button>
     </div>
+    <div id="painelMsg" class="state-box" style="padding:12px 0 0;">
+      <span class="ico" style="font-size:24px;">🏷️</span>Insira o ID e clique em Gerar.
+    </div>
+    <a class="btn-imprimir" id="btnImprimir" href="#" target="_blank" rel="noopener">🖨️ Imprimir / Salvar PDF</a>
+  </div>
+</div>
 
-    <!-- ── Bloco 2: Gerar por Endereço (NOVO) ── -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-head-icon">📍</div>
-        <div class="card-head-title">Gerar etiqueta por Endereço</div>
-      </div>
-      <div class="card-body">
-        <div class="input-row">
-          <input class="app-input" type="text" id="inputEndereco" placeholder="Digite o endereço..." autocomplete="off" autocorrect="off" autocapitalize="characters"/>
-          <button class="btn-secondary" id="btn-gerar-endereco">Gerar</button>
-        </div>
-        <div id="painelMsgEndereco" class="state-box" style="padding:12px 0 0;">
-          <span class="ico" style="font-size:24px;">📍</span>Insira o endereço e clique em Gerar.
-        </div>
-        <a class="btn-imprimir" id="btnImprimirEndereco" href="#" target="_blank" rel="noopener">🖨️ Imprimir / Salvar PDF</a>
-      </div>
+<!-- ── Bloco 2: Gerar por Endereço (NOVO) ── -->
+<div class="card">
+  <div class="card-head">
+    <div class="card-head-icon">📍</div>
+    <div class="card-head-title">Gerar etiqueta por Endereço</div>
+  </div>
+  <div class="card-body">
+    <div class="input-row">
+      <input class="app-input" type="text" id="inputEndereco" placeholder="Digite o endereço..." autocomplete="off" autocorrect="off" autocapitalize="characters"/>
+      <button class="btn-secondary" id="btn-gerar-endereco">Gerar</button>
     </div>
+    <div id="painelMsgEndereco" class="state-box" style="padding:12px 0 0;">
+      <span class="ico" style="font-size:24px;">📍</span>Insira o endereço e clique em Gerar.
+    </div>
+    <a class="btn-imprimir" id="btnImprimirEndereco" href="#" target="_blank" rel="noopener">🖨️ Imprimir / Salvar PDF</a>
+  </div>
+</div>
+```
 
   </div>
 
   <!-- ── Etiqueta por ID (original, hidden fora da tela) ── -->
+
   <div class="etiqueta-wrapper" id="etiquetaWrapper">
     <div class="etiqueta">
       <div class="etiqueta-header">
@@ -339,6 +347,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:#0c0c0f;color:
   </div>
 
   <!-- ── Etiqueta por Endereço (meia folha A4, sem QR) ── -->
+
   <div class="etiqueta-end-wrapper" id="etiquetaEndWrapper">
     <div class="etiqueta-end" id="etiquetaEndConteudo">
       <!-- preenchida dinamicamente pelo JS -->
@@ -523,218 +532,234 @@ function gerarEtiqueta() {
           '<title>Palete '+id.toUpperCase()+' - Condor</title>' +
           '<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">' +
           '<style>'+estilos+'</style>' +
-          '</head><body>' +
-          document.getElementById("etiquetaWrapper").innerHTML +
-          '<script>window.onload=function(){window.print();}<\/script>' +
-          '</body></html>';
 
-        var blob = new Blob([html], {type: "text/html;charset=utf-8"});
-        var url  = URL.createObjectURL(blob);
-        btnP.href = url;
-        btnP.style.display = "block";
-      }, 300);
-    })
-    .catch(function(){ msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
+```
+      '</head><body>' +
+      document.getElementById("etiquetaWrapper").innerHTML +
+      '<script>window.onload=function(){window.print();}<\/script>' +
+      '</body></html>';
+
+    var blob = new Blob([html], {type: "text/html;charset=utf-8"});
+    var url  = URL.createObjectURL(blob);
+    btnP.href = url;
+    btnP.style.display = "block";
+  }, 300);
+})
+.catch(function(){ msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>'; });
+```
+
 }
 
-document.getElementById("btn-gerar").addEventListener("click", gerarEtiqueta);
-document.getElementById("idInputEtiqueta").addEventListener("keydown", function(e){ if (e.key === "Enter") gerarEtiqueta(); });
+document.getElementById(“btn-gerar”).addEventListener(“click”, gerarEtiqueta);
+document.getElementById(“idInputEtiqueta”).addEventListener(“keydown”, function(e){ if (e.key === “Enter”) gerarEtiqueta(); });
 
 // ═══════════════════════════════════════════════
 // GERAR ETIQUETA POR ENDEREÇO (NOVA FUNÇÃO)
 // ═══════════════════════════════════════════════
 function gerarEtiquetaPorEndereco() {
-  var endereco = document.getElementById("inputEndereco").value.trim();
-  var msg      = document.getElementById("painelMsgEndereco");
-  var btnP     = document.getElementById("btnImprimirEndereco");
+var endereco = document.getElementById(“inputEndereco”).value.trim();
+var msg      = document.getElementById(“painelMsgEndereco”);
+var btnP     = document.getElementById(“btnImprimirEndereco”);
 
-  if (!endereco) {
-    msg.innerHTML = '<div class="error-box">Insira um endereço.</div>';
+if (!endereco) {
+msg.innerHTML = ‘<div class="error-box">Insira um endereço.</div>’;
+return;
+}
+
+msg.innerHTML = ‘<div class="loading-box"><div class="spinner"></div>Buscando registros…</div>’;
+btnP.style.display = “none”;
+
+fetch(SHEET_URL)
+.then(function(r){ return r.text(); })
+.then(function(text){
+var parsed = parseCSV(text);
+
+```
+  // ── Encontrar coluna ENDEREÇO ──
+  var endCol = parsed.headers.find(function(h){
+    return h.toLowerCase().trim() === "endereço" || h.toLowerCase().trim() === "endereco";
+  });
+  if (!endCol) {
+    msg.innerHTML = '<div class="error-box">Coluna "ENDEREÇO" não encontrada na planilha.</div>';
     return;
   }
 
-  msg.innerHTML = '<div class="loading-box"><div class="spinner"></div>Buscando registros...</div>';
-  btnP.style.display = "none";
+  // ── Filtrar registros pelo endereço ──
+  var registros = parsed.rows.filter(function(r){
+    return (r[endCol] || "").toLowerCase().trim() === endereco.toLowerCase().trim();
+  });
 
-  fetch(SHEET_URL)
-    .then(function(r){ return r.text(); })
-    .then(function(text){
-      var parsed = parseCSV(text);
+  if (registros.length === 0) {
+    msg.innerHTML = '<div class="error-box">❌ Nenhum registro encontrado para o endereço: <strong>' + endereco + '</strong></div>';
+    return;
+  }
 
-      // ── Encontrar coluna ENDEREÇO ──
-      var endCol = parsed.headers.find(function(h){
-        return h.toLowerCase().trim() === "endereço" || h.toLowerCase().trim() === "endereco";
-      });
-      if (!endCol) {
-        msg.innerHTML = '<div class="error-box">Coluna "ENDEREÇO" não encontrada na planilha.</div>';
-        return;
-      }
+  // ── Agrupar por Pedido + somar Quantidades ──
+  var agrupado = {};
 
-      // ── Filtrar registros pelo endereço ──
-      var registros = parsed.rows.filter(function(r){
-        return (r[endCol] || "").toLowerCase().trim() === endereco.toLowerCase().trim();
-      });
+  registros.forEach(function(r){
+    var quantidade = parseFloat((findField(r, "QUANTIDADE") !== "—" ? findField(r, "QUANTIDADE") : findField(r, "Quantidade")).replace(/[^0-9.]/g,"")) || 0;
+    var pedido     = findField(r, "PEDIDO") !== "—" ? findField(r, "PEDIDO") : findField(r, "Pedido");
 
-      if (registros.length === 0) {
-        msg.innerHTML = '<div class="error-box">❌ Nenhum registro encontrado para o endereço: <strong>' + endereco + '</strong></div>';
-        return;
-      }
+    if (pedido === "—" || !pedido) pedido = "(sem pedido)";
 
-      // ── Agrupar por Descrição + somar Quantidades ──
-      var agrupado = {};
-      var pedidosSet = {};
+    if (!agrupado[pedido]) {
+      agrupado[pedido] = 0;
+    }
+    agrupado[pedido] += quantidade;
+  });
 
-      registros.forEach(function(r){
-        var descricao  = findField(r, "DESCRIÇÃO") !== "—" ? findField(r, "DESCRIÇÃO") : findField(r, "Descrição");
-        var quantidade = parseFloat((findField(r, "QUANTIDADE") !== "—" ? findField(r, "QUANTIDADE") : findField(r, "Quantidade")).replace(/[^0-9.]/g,"")) || 0;
-        var pedido     = findField(r, "PEDIDO") !== "—" ? findField(r, "PEDIDO") : findField(r, "Pedido");
+  // ── Ordenar chaves (pedido) ──
+  var chaves = Object.keys(agrupado).sort();
 
-        if (descricao === "—" || !descricao) descricao = "(sem descrição)";
-        if (pedido    === "—" || !pedido)    pedido    = "(sem pedido)";
+  // ── Totais ──
+  var totalItens = 0;
+  chaves.forEach(function(k){ totalItens += agrupado[k]; });
 
-        if (!agrupado[descricao]) {
-          agrupado[descricao] = { quantidade: 0, pedidos: [] };
-        }
-        agrupado[descricao].quantidade += quantidade;
-        if (pedido && agrupado[descricao].pedidos.indexOf(pedido) === -1) {
-          agrupado[descricao].pedidos.push(pedido);
-        }
-      });
+  // ── Tamanho de fonte dinâmico baseado na quantidade de pedidos ──
+  var numPedidos = chaves.length;
+  var fontePedido, fonteQtd, paddingRow;
+  if (numPedidos === 1) {
+    fontePedido = "36pt"; fonteQtd = "44pt"; paddingRow = "8mm 5mm";
+  } else if (numPedidos === 2) {
+    fontePedido = "26pt"; fonteQtd = "32pt"; paddingRow = "6mm 5mm";
+  } else if (numPedidos === 3) {
+    fontePedido = "20pt"; fonteQtd = "24pt"; paddingRow = "4mm 5mm";
+  } else if (numPedidos === 4) {
+    fontePedido = "16pt"; fonteQtd = "19pt"; paddingRow = "3mm 5mm";
+  } else if (numPedidos <= 6) {
+    fontePedido = "12pt"; fonteQtd = "14pt"; paddingRow = "2.5mm 4mm";
+  } else {
+    fontePedido = "9pt";  fonteQtd = "11pt"; paddingRow = "2mm 3mm";
+  }
 
-      // ── Ordenar chaves (descrição) ──
-      var chaves = Object.keys(agrupado).sort();
+  // ── Montar linhas da tabela ──
+  var linhasHTML = chaves.map(function(ped){
+    var qtd = agrupado[ped];
+    var qtdStr = qtd > 0 ? qtd : "—";
+    return '<tr>' +
+      '<td class="td-pedido" style="font-size:' + fontePedido + ';padding:' + paddingRow + ';">' + escapeHTML(ped) + '</td>' +
+      '<td class="td-qty"    style="font-size:' + fonteQtd   + ';padding:' + paddingRow + ';">' + qtdStr + '</td>' +
+      '</tr>';
+  }).join("");
 
-      // ── Totais ──
-      var totalItens = 0;
-      chaves.forEach(function(k){ totalItens += agrupado[k].quantidade; });
+  // ── Montar HTML da etiqueta meia folha ──
+  var dataGeracao = new Date().toLocaleDateString("pt-BR");
+  var etiquetaHTML =
+    '<div class="etiqueta-header">' +
+      '<img id="logoEtiquetaEnd" src="' + LOGO_URL + '" alt="Condor"/>' +
+      '<div class="etiqueta-titulo">' +
+        '<h1>Identificação de Palete</h1>' +
+        '<p>Condor Tecnologias Não-Letais</p>' +
+      '</div>' +
+    '</div>' +
+    '<div class="end-meta">' +
+      '<div class="end-meta-bloco destaque" style="flex:2;">' +
+        '<div class="end-meta-label">Endereço</div>' +
+        '<div class="end-meta-valor">' + escapeHTML(endereco.toUpperCase()) + '</div>' +
+      '</div>' +
+      '<div class="end-meta-bloco">' +
+        '<div class="end-meta-label">Registros</div>' +
+        '<div class="end-meta-valor">' + registros.length + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="end-table-wrapper">' +
+      '<table class="end-table">' +
+        '<thead><tr>' +
+          '<th>Pedido</th>' +
+          '<th style="text-align:center;width:28mm;">Qtd. Total</th>' +
+        '</tr></thead>' +
+        '<tbody>' + linhasHTML + '</tbody>' +
+      '</table>' +
+    '</div>' +
+    '<div class="end-rodape">' +
+      '<span class="end-rodape-data">Gerado em ' + dataGeracao + '</span>' +
+      '<span class="end-rodape-total">Total: ' + totalItens + ' un.</span>' +
+    '</div>';
 
-      // ── Montar linhas da tabela ──
-      var linhasHTML = chaves.map(function(desc){
-        var g = agrupado[desc];
-        var pedidosStr = g.pedidos.sort().join(", ");
-        var qtdStr = g.quantidade > 0 ? g.quantidade : "—";
-        return '<tr>' +
-          '<td class="td-pedido">' + escapeHTML(pedidosStr) + '</td>' +
-          '<td>' + escapeHTML(desc) + '</td>' +
-          '<td class="td-qty">' + qtdStr + '</td>' +
-          '</tr>';
-      }).join("");
+  document.getElementById("etiquetaEndConteudo").innerHTML = etiquetaHTML;
 
-      // ── Montar HTML da etiqueta meia folha ──
-      var dataGeracao = new Date().toLocaleDateString("pt-BR");
-      var etiquetaHTML =
-        '<div class="etiqueta-header">' +
-          '<img id="logoEtiquetaEnd" src="' + LOGO_URL + '" alt="Condor"/>' +
-          '<div class="etiqueta-titulo">' +
-            '<h1>Identificação de Palete</h1>' +
-            '<p>Condor Tecnologias Não-Letais</p>' +
-          '</div>' +
-        '</div>' +
-        '<div class="end-meta">' +
-          '<div class="end-meta-bloco destaque" style="flex:2;">' +
-            '<div class="end-meta-label">Endereço</div>' +
-            '<div class="end-meta-valor">' + escapeHTML(endereco.toUpperCase()) + '</div>' +
-          '</div>' +
-          '<div class="end-meta-bloco">' +
-            '<div class="end-meta-label">Registros</div>' +
-            '<div class="end-meta-valor">' + registros.length + '</div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="end-table-wrapper">' +
-          '<table class="end-table">' +
-            '<thead><tr>' +
-              '<th>Pedido(s)</th>' +
-              '<th>Descrição</th>' +
-              '<th style="text-align:center;">Qtd.</th>' +
-            '</tr></thead>' +
-            '<tbody>' + linhasHTML + '</tbody>' +
-          '</table>' +
-        '</div>' +
-        '<div class="end-rodape">' +
-          '<span class="end-rodape-data">Gerado em ' + dataGeracao + '</span>' +
-          '<span class="end-rodape-total">Total: ' + totalItens + ' un.</span>' +
-        '</div>';
+  msg.innerHTML = '<div class="ok-box">✅ ' + registros.length + ' registro(s) encontrado(s). Clique em <strong>Imprimir</strong> para salvar ou imprimir.</div>';
 
-      document.getElementById("etiquetaEndConteudo").innerHTML = etiquetaHTML;
+  // ── Gerar blob para impressão ──
+  setTimeout(function(){
+    var estilosEnd = [
+      "*{box-sizing:border-box;margin:0;padding:0;}",
+      "body{font-family:'DM Sans',Arial,sans-serif;background:#fff;color:#1a1a1a;}",
+      ".etiqueta-end{width:210mm;min-height:148mm;max-height:148mm;background:#fff;padding:8mm 12mm;display:flex;flex-direction:column;overflow:hidden;}",
+      ".etiqueta-header{display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #E8620A;padding-bottom:4mm;margin-bottom:5mm;}",
+      ".etiqueta-header img{height:14mm;object-fit:contain;}",
+      ".etiqueta-titulo h1{font-size:14pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:'Syne',Arial,sans-serif;}",
+      ".etiqueta-titulo p{font-size:7pt;color:#999;letter-spacing:2px;text-transform:uppercase;text-align:right;margin-top:1mm;}",
+      ".end-meta{display:flex;gap:4mm;margin-bottom:5mm;}",
+      ".end-meta-bloco{flex:1;border:1.5px solid #e8e8e8;border-radius:6px;padding:3mm 4mm;background:#fafafa;}",
+      ".end-meta-bloco.destaque{border-color:#E8620A;background:#fff5f0;}",
+      ".end-meta-label{font-size:6pt;font-weight:700;color:#E8620A;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5mm;}",
+      ".end-meta-valor{font-size:13pt;font-weight:800;color:#111;line-height:1.1;}",
+      ".end-table-wrapper{flex:1;overflow:hidden;}",
+      ".end-table{width:100%;border-collapse:collapse;}",
+      ".end-table thead tr{background:#E8620A;}",
+      ".end-table thead th{color:#fff;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3mm 4mm;text-align:left;font-size:8pt;}",
+      ".end-table tbody tr:nth-child(even){background:#f9f9f9;}",
+      ".end-table tbody tr:nth-child(odd){background:#fff;}",
+      ".end-table tbody td{color:#222;border-bottom:1px solid #ebebeb;vertical-align:middle;}",
+      ".end-table tbody td.td-pedido{font-weight:800;color:#E8620A;white-space:nowrap;}",
+      ".end-table tbody td.td-qty{font-weight:900;text-align:center;color:#111;}",
+      ".end-rodape{margin-top:4mm;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #E8620A;padding-top:3mm;}",
+      ".end-rodape-data{font-size:7pt;color:#aaa;letter-spacing:1px;}",
+      ".end-rodape-total{font-size:8pt;font-weight:700;color:#E8620A;letter-spacing:1px;text-transform:uppercase;}",
+      "@media print{body{margin:0;} @page{size:A4;margin:0;}}"
+    ].join("");
 
-      msg.innerHTML = '<div class="ok-box">✅ ' + registros.length + ' registro(s) encontrado(s). Clique em <strong>Imprimir</strong> para salvar ou imprimir.</div>';
+    var htmlDoc = '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/>' +
+      '<title>Endereço ' + escapeHTML(endereco.toUpperCase()) + ' - Condor</title>' +
+      '<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">' +
+      '<style>' + estilosEnd + '</style>' +
+      '</head><body>' +
+      '<div class="etiqueta-end">' + document.getElementById("etiquetaEndConteudo").innerHTML + '</div>' +
+      '<script>window.onload=function(){window.print();}<\/script>' +
+      '</body></html>';
 
-      // ── Gerar blob para impressão ──
-      setTimeout(function(){
-        var estilosEnd = [
-          "*{box-sizing:border-box;margin:0;padding:0;}",
-          "body{font-family:'DM Sans',Arial,sans-serif;background:#fff;color:#1a1a1a;}",
-          ".etiqueta-end{width:210mm;min-height:148mm;max-height:148mm;background:#fff;padding:8mm 12mm;display:flex;flex-direction:column;overflow:hidden;}",
-          ".etiqueta-header{display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #E8620A;padding-bottom:4mm;margin-bottom:5mm;}",
-          ".etiqueta-header img{height:14mm;object-fit:contain;}",
-          ".etiqueta-titulo h1{font-size:14pt;font-weight:900;color:#E8620A;text-transform:uppercase;text-align:right;font-family:'Syne',Arial,sans-serif;}",
-          ".etiqueta-titulo p{font-size:7pt;color:#999;letter-spacing:2px;text-transform:uppercase;text-align:right;margin-top:1mm;}",
-          ".end-meta{display:flex;gap:4mm;margin-bottom:5mm;}",
-          ".end-meta-bloco{flex:1;border:1.5px solid #e8e8e8;border-radius:6px;padding:3mm 4mm;background:#fafafa;}",
-          ".end-meta-bloco.destaque{border-color:#E8620A;background:#fff5f0;}",
-          ".end-meta-label{font-size:6pt;font-weight:700;color:#E8620A;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5mm;}",
-          ".end-meta-valor{font-size:13pt;font-weight:800;color:#111;line-height:1.1;}",
-          ".end-table-wrapper{flex:1;overflow:hidden;}",
-          ".end-table{width:100%;border-collapse:collapse;font-size:8.5pt;}",
-          ".end-table thead tr{background:#E8620A;}",
-          ".end-table thead th{color:#fff;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2.5mm 3mm;text-align:left;font-size:7pt;}",
-          ".end-table tbody tr:nth-child(even){background:#f9f9f9;}",
-          ".end-table tbody tr:nth-child(odd){background:#fff;}",
-          ".end-table tbody td{padding:2mm 3mm;color:#222;border-bottom:1px solid #ebebeb;vertical-align:top;}",
-          ".end-table tbody td.td-pedido{font-weight:700;color:#E8620A;white-space:nowrap;}",
-          ".end-table tbody td.td-qty{font-weight:800;text-align:center;font-size:10pt;}",
-          ".end-rodape{margin-top:4mm;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #E8620A;padding-top:3mm;}",
-          ".end-rodape-data{font-size:7pt;color:#aaa;letter-spacing:1px;}",
-          ".end-rodape-total{font-size:8pt;font-weight:700;color:#E8620A;letter-spacing:1px;text-transform:uppercase;}",
-          "@media print{body{margin:0;} @page{size:A4;margin:0;}}"
-        ].join("");
+    var blob = new Blob([htmlDoc], {type: "text/html;charset=utf-8"});
+    var url  = URL.createObjectURL(blob);
+    btnP.href = url;
+    btnP.style.display = "block";
+  }, 200);
+})
+.catch(function(){
+  msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>';
+});
+```
 
-        var htmlDoc = '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/>' +
-          '<title>Endereço ' + escapeHTML(endereco.toUpperCase()) + ' - Condor</title>' +
-          '<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">' +
-          '<style>' + estilosEnd + '</style>' +
-          '</head><body>' +
-          '<div class="etiqueta-end">' + document.getElementById("etiquetaEndConteudo").innerHTML + '</div>' +
-          '<script>window.onload=function(){window.print();}<\/script>' +
-          '</body></html>';
-
-        var blob = new Blob([htmlDoc], {type: "text/html;charset=utf-8"});
-        var url  = URL.createObjectURL(blob);
-        btnP.href = url;
-        btnP.style.display = "block";
-      }, 200);
-    })
-    .catch(function(){
-      msg.innerHTML = '<div class="error-box">❌ Erro ao acessar a planilha. Verifique sua conexão.</div>';
-    });
 }
 
 // Escape para evitar XSS no HTML da etiqueta
 function escapeHTML(str) {
-  return String(str)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;");
+return String(str)
+.replace(/&/g,”&”)
+.replace(/</g,”<”)
+.replace(/>/g,”>”)
+.replace(/”/g,”"”);
 }
 
-document.getElementById("btn-gerar-endereco").addEventListener("click", gerarEtiquetaPorEndereco);
-document.getElementById("inputEndereco").addEventListener("keydown", function(e){ if (e.key === "Enter") gerarEtiquetaPorEndereco(); });
+document.getElementById(“btn-gerar-endereco”).addEventListener(“click”, gerarEtiquetaPorEndereco);
+document.getElementById(“inputEndereco”).addEventListener(“keydown”, function(e){ if (e.key === “Enter”) gerarEtiquetaPorEndereco(); });
 
 // ═══════════════════════════════════════════════
 // AUTO-BUSCA por ?id= na URL
 // ═══════════════════════════════════════════════
 (function(){
-  try {
-    var params = new URLSearchParams(window.location.search);
-    var id = params.get("id");
-    if (id && id.trim()) {
-      irPara("screen-consulta");
-      document.getElementById("idInputConsulta").value = id.trim();
-      buscar();
-    }
-  } catch(e) {}
+try {
+var params = new URLSearchParams(window.location.search);
+var id = params.get(“id”);
+if (id && id.trim()) {
+irPara(“screen-consulta”);
+document.getElementById(“idInputConsulta”).value = id.trim();
+buscar();
+}
+} catch(e) {}
 })();
 </script>
+
 </body>
 </html>
